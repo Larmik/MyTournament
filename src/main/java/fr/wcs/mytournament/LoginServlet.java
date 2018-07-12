@@ -8,17 +8,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 
-@WebServlet(name = "SignInServlet", urlPatterns = "/signin")
-public class SignInServlet extends HttpServlet {
+@WebServlet(name = "LoginServlet", urlPatterns = "/login")
+public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String email = request.getParameter("email");
-        String pseudo = request.getParameter("pseudo");
-        String password = request.getParameter("password");
+
+        String pseudoValue = request.getParameter("pseudo");
+        String passwordValue = request.getParameter("password");
+        boolean isConnected = false;
+
         try {
             Class driverClass = Class.forName("com.mysql.jdbc.Driver");
             Driver driver = (Driver) driverClass.newInstance();
@@ -26,13 +25,24 @@ public class SignInServlet extends HttpServlet {
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/myTournament", "root", "jecode4wcs");
 
             PreparedStatement preparedStatement = connection
-                    .prepareStatement("INSERT INTO players VALUES(null, ?, ?, ?);");
-            preparedStatement.setString(1, email);
-            preparedStatement.setString(2, pseudo);
-            preparedStatement.setString(3, password);
-            preparedStatement.executeUpdate();
+                    .prepareStatement("SELECT pseudo, password FROM players");
+            ResultSet result = preparedStatement.executeQuery();
 
-            response.sendRedirect("/index.jsp");
+            while (result.next()) {
+                String password = result.getString("password");
+                String pseudo = result.getString("pseudo");
+                if (pseudoValue.contains(pseudo) && passwordValue.contains(password)) {
+                    isConnected = true;
+                    break;
+                }
+            }
+
+            if (isConnected) {
+                //TODO User is connected
+            } else {
+                //TODO User is not connected
+            }
+
 
         } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | SQLException e) {
             e.printStackTrace();
@@ -42,4 +52,6 @@ public class SignInServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
+
+
 }

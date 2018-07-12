@@ -12,9 +12,9 @@
        </c:if>
         <li><a href="index.jsp">Participer à un tournoi</a> </li>
     </ul>
-    <c:if test="${requestScope.isConnected}">
+    <c:if test="${sessionScope.isConnected}">
         <div>
-            <span>Bonjour ${requestScope.pseudo} !</span>
+            <span>Bonjour ${sessionScope.pseudo} !</span>
             <a href="index.jsp">Déconnexion</a>
         </div>
     </c:if>

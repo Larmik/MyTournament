@@ -38,8 +38,8 @@ public class LoginServlet extends HttpServlet {
             }
 
             if ((boolean) request.getSession().getAttribute("isConnected")) {
-                request.setAttribute("isConnected", true);
-                request.setAttribute("pseudo", pseudoValue);
+                request.getSession().setAttribute("isConnected", true);
+                request.getSession().setAttribute("pseudo", pseudoValue);
                 this.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
                 response.sendRedirect("/index.jsp");
             } else {

@@ -14,9 +14,11 @@
         tilde 3 wolf moon kitsch, taxidermy twee farm-to-table try-hard. Cloud bread af woke, synth lyft listicle thundercats
         master cleanse blog unicorn ennui jean shorts beard narwhal. Af tumblr meh glossier health goth stumptown fam.
     </p>
-    <a href="${pageContext.request.contextPath}/signin.jsp">Je m'inscris</a>
-    <span>ou</span>
-    <a href="${pageContext.request.contextPath}/login.jsp">Je me connecte</a>
+    <c:if test="${!sessionScope.isConnected}">
+        <a href="${pageContext.request.contextPath}/signin.jsp">Je m'inscris</a>
+        <span>ou</span>
+        <a href="${pageContext.request.contextPath}/login.jsp">Je me connecte</a>
+    </c:if>
 
 </body>
 </html>

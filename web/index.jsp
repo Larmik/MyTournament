@@ -7,12 +7,6 @@
 </head>
 <body>
     <jsp:include page="header.jsp"/>
-    <c:if test="${requestScope.isConnected}">
-        <div>
-            <span>Bonjour ${requestScope.pseudo} !</span>
-            <a href="index.jsp">Déconnexion</a>
-        </div>
-    </c:if>
     <img src="http://via.placeholder.com/600x400">
     <p>Lorem ipsum dolor amet tumblr lomo synth shoreditch kinfolk, pok pok cornhole taiyaki cold-pressed mlkshk try-hard.
         DIY normcore raw denim, literally activated charcoal food truck cornhole retro williamsburg franzen photo booth.

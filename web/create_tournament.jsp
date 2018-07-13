@@ -6,13 +6,53 @@
 </head>
 <body>
 <jsp:include page="header.jsp"/>
-<form method="post">
+<form method="post" action="${pageContext.request.contextPath}/create">
+    <label for="name">Donnez un nom à votre tournoi :</label>
+    <input type="text" name="name" id="name" />
+    <c:if test="${not empty requestScope.error}">
+        <p>${error}</p>
+    </c:if>
     <fieldset>
         <legend>Choisissez votre sport :</legend>
-        <input type="radio" name="sports" value="Fléchettes" onclick="${requestScope.dartsChecked = true}"> Fléchettes
-        <input type="radio" name="sports" value="Pétanque" onclick="${requestScope.bowlingChecked = true}"> Pétanque
-        <input type="radio" name="sports" value="Baby-foot" onclick="${requestScope.bfChecked = true}"> Baby-Foot
+        <input type="radio" name="sports" value="darts" checked> Fléchettes
+        <input type="radio" name="sports" value="bowling"> Pétanque
+        <input type="radio" name="sports" value="baby-foot"> Baby-Foot
     </fieldset>
+    <fieldset>
+        <legend>Choisissez votre type de tournoi :</legend>
+        <input type="radio" name="type" value="championship" checked>Championnat
+        <input type="radio" name="type" value="groups">Poules avec élimination directe
+        <input type="radio" name="type" value="finales">Elimination directe
+    </fieldset>
+    <fieldset>
+        <legend>Choisissez votre mode :</legend>
+        <input type="radio" name="mode" value="individual" checked>Individuel
+        <input type="radio" name="mode" value="teams">Par équipes
+    </fieldset>
+    <fieldset>
+        <legend>Sélectionnez vos joueurs :</legend>
+        <select name="players">
+            <c:forEach items="${requestScope.playerNames}" var="player">
+                <option>${player}</option>
+            </c:forEach>
+        </select>
+        <input type="submit" value="Ajouter" onclick="form.action='/addplayer';">
+
+
+        <c:forEach items="${requestScope.playerSelected}" var="selected">
+            <p>${selected}</p>
+        </c:forEach>
+    </fieldset>
+    <input type="submit" value="C'est parti !"/>
+
 </form>
+<c:if test="${not empty requestScope.success}">
+    <script>
+        window.addEventListener("load",function(){
+            alert("${success}");
+        })
+    </script>
+</c:if>
+
 </body>
 </html>

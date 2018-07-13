@@ -19,6 +19,13 @@
         <span>ou</span>
         <a href="${pageContext.request.contextPath}/login.jsp">Je me connecte</a>
     </c:if>
+    <c:if test="${not empty requestScope.success}">
+        <script>
+            window.addEventListener("load",function(){
+                alert("${success}");
+            })
+        </script>
+    </c:if>
 
 </body>
 </html>

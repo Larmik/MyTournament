@@ -27,11 +27,12 @@ public class SignInServlet extends HttpServlet {
 
             PreparedStatement preparedStatement = connection
                     .prepareStatement("INSERT INTO players VALUES(null, ?, ?, ?);");
-            preparedStatement.setString(1, email);
-            preparedStatement.setString(2, pseudo);
+            preparedStatement.setString(1, pseudo);
+            preparedStatement.setString(2, email);
             preparedStatement.setString(3, password);
             preparedStatement.executeUpdate();
-
+            request.getSession().setAttribute("isConnected", true);
+            request.getSession().setAttribute("pseudo", pseudo);
             response.sendRedirect("/index.jsp");
 
         } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | SQLException e) {

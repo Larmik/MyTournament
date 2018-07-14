@@ -16,7 +16,7 @@ public class LoginServlet extends HttpServlet {
 
         String pseudoValue = request.getParameter("pseudo");
         String passwordValue = request.getParameter("password");
-        boolean isConnected = false;
+
 
         try {
             Class driverClass = Class.forName("com.mysql.jdbc.Driver");
@@ -32,14 +32,14 @@ public class LoginServlet extends HttpServlet {
                 String password = result.getString("password");
                 String pseudo = result.getString("pseudo");
                 if (pseudoValue.contains(pseudo) && passwordValue.contains(password)) {
-                    isConnected = true;
+                    request.getSession().setAttribute("isConnected", true);
                     break;
                 }
             }
 
-            if (isConnected) {
-                request.setAttribute("isConnected", true);
-                request.setAttribute("pseudo", pseudoValue);
+            if ((boolean) request.getSession().getAttribute("isConnected")) {
+                request.getSession().setAttribute("isConnected", true);
+                request.getSession().setAttribute("pseudo", pseudoValue);
                 this.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
                 response.sendRedirect("/index.jsp");
             } else {

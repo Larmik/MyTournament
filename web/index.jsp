@@ -7,12 +7,6 @@
 </head>
 <body>
     <jsp:include page="header.jsp"/>
-    <c:if test="${requestScope.isConnected}">
-        <div>
-            <span>Bonjour ${requestScope.pseudo} !</span>
-            <a href="index.jsp">Déconnexion</a>
-        </div>
-    </c:if>
     <img src="http://via.placeholder.com/600x400">
     <p>Lorem ipsum dolor amet tumblr lomo synth shoreditch kinfolk, pok pok cornhole taiyaki cold-pressed mlkshk try-hard.
         DIY normcore raw denim, literally activated charcoal food truck cornhole retro williamsburg franzen photo booth.
@@ -20,9 +14,18 @@
         tilde 3 wolf moon kitsch, taxidermy twee farm-to-table try-hard. Cloud bread af woke, synth lyft listicle thundercats
         master cleanse blog unicorn ennui jean shorts beard narwhal. Af tumblr meh glossier health goth stumptown fam.
     </p>
-    <a href="${pageContext.request.contextPath}/signin.jsp">Je m'inscris</a>
-    <span>ou</span>
-    <a href="${pageContext.request.contextPath}/login.jsp">Je me connecte</a>
+    <c:if test="${!sessionScope.isConnected}">
+        <a href="${pageContext.request.contextPath}/signin.jsp">Je m'inscris</a>
+        <span>ou</span>
+        <a href="${pageContext.request.contextPath}/login.jsp">Je me connecte</a>
+    </c:if>
+    <c:if test="${not empty requestScope.success}">
+        <script>
+            window.addEventListener("load",function(){
+                alert("${success}");
+            })
+        </script>
+    </c:if>
 
 </body>
 </html>

@@ -46,7 +46,7 @@ public class CreateServlet extends HttpServlet {
                 e.printStackTrace();
             }
             request.setAttribute("success", "Tournoi créé avec succès !");
-            this.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
+            this.getServletContext().getRequestDispatcher("/home.jsp").forward(request, response);
             response.sendRedirect("/");
         }
 

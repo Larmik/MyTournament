@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -17,5 +18,12 @@
     <input type="password" id="password_confirm_form" name="password_confirm" required/>
     <input type="submit" value="Inscription"/>
 </form>
+
+<c:if test="${not empty requestScope.noMatchError}">
+    <script> alert('Mots de passes différents.')</script>
+</c:if>
+<c:if test="${not empty requestScope.shortError}">
+    <script> alert('Mot de passe trop court.')</script>
+</c:if>
 </body>
 </html>

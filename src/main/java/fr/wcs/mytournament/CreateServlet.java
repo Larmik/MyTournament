@@ -25,39 +25,44 @@ public class CreateServlet extends HttpServlet {
         String type = request.getParameter("type");
         String mode = request.getParameter("mode");
         List<String> playerSelected = (List<String>) request.getSession().getAttribute("playerSelected");
+        if (playerSelected != null) {
+            if (name == null || name.isEmpty()) {
+                request.setAttribute("error", "Veuillez nommer votre tournoi !");
+                this.getServletContext().getRequestDispatcher("/create_tournament.jsp").forward(request, response);
+            } else {
+                try {
+                    Class driverClass = Class.forName("com.mysql.jdbc.Driver");
 
-        if (name == null || name.isEmpty()) {
-            request.setAttribute("error", "Veuillez nommer votre tournoi !");
-            this.getServletContext().getRequestDispatcher("/create_tournament.jsp").forward(request, response);
+                    Driver driver = (Driver) driverClass.newInstance();
+                    DriverManager.registerDriver(driver);
+                    Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/myTournament", "root", "jecode4wcs");
+                    PreparedStatement preparedStatement = connection
+                            .prepareStatement("INSERT INTO championship VALUES(null, ?, ?, ?, ?);");
+                    preparedStatement.setString(1, name);
+                    preparedStatement.setString(2, sport);
+                    preparedStatement.setString(3, type);
+                    preparedStatement.setString(4, mode);
+                    preparedStatement.executeUpdate();
 
+                } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | SQLException e) {
+                    e.printStackTrace();
+                }
+
+                for (String player : playerSelected) {
+                    playerId.add(getPlayerId(player));
+                }
+                for (int currentPlayerId : playerId) {
+                    playerToTournament(name, currentPlayerId);
+                }
+                request.setAttribute("success", "Tournoi créé avec succès !");
+                this.getServletContext().getRequestDispatcher("/home.jsp").forward(request, response);
+            }
         } else {
-            try {
-                Class driverClass = Class.forName("com.mysql.jdbc.Driver");
-
-                Driver driver = (Driver) driverClass.newInstance();
-                DriverManager.registerDriver(driver);
-                Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/myTournament", "root", "jecode4wcs");
-                PreparedStatement preparedStatement = connection
-                        .prepareStatement("INSERT INTO championship VALUES(null, ?, ?, ?, ?);");
-                preparedStatement.setString(1, name);
-                preparedStatement.setString(2, sport);
-                preparedStatement.setString(3, type);
-                preparedStatement.setString(4, mode);
-                preparedStatement.executeUpdate();
-
-            } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | SQLException e) {
-                e.printStackTrace();
-            }
-
-            for (String player : playerSelected) {
-                playerId.add(getPlayerId(player));
-            }
-            for (int currentPlayerId : playerId) {
-                playerToTournament(name, currentPlayerId);
-            }
-            request.setAttribute("success", "Tournoi créé avec succès !");
-            this.getServletContext().getRequestDispatcher("/home.jsp").forward(request, response);
+            request.setAttribute("emptyError", "Veuillez choisir au moin deux joueurs");
+            this.getServletContext().getRequestDispatcher("/create_tournament.jsp").forward(request, response);
         }
+
+
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

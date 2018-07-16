@@ -46,6 +46,8 @@
     <input type="submit" value="C'est parti !"/>
 
 </form>
-
+<c:if test="${not empty requestScope.emptyError}">
+    <script>alert('Veuillez choisir au moins deux joueurs')</script>
+</c:if>
 </body>
 </html>

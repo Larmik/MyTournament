@@ -1,10 +1,15 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<c:if test="${cookie.onlineCookie.value.equals('true')}">
+    <jsp:forward page="/home"/>
+</c:if>
+
 <html>
 <head>
-    <title>Accueil - My Tournament</title>
+    <title>My Tournament</title>
 </head>
 <body>
+
 <h1>My Tournament</h1>
 <img src="http://via.placeholder.com/600x400">
 <p>Lorem ipsum dolor amet tumblr lomo synth shoreditch kinfolk.

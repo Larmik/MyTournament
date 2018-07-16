@@ -4,6 +4,7 @@ import com.mysql.jdbc.Driver;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,6 +20,7 @@ public class SignInServlet extends HttpServlet {
         String email = request.getParameter("email");
         String pseudo = request.getParameter("pseudo");
         String password = request.getParameter("password");
+
         try {
             Class driverClass = Class.forName("com.mysql.jdbc.Driver");
             Driver driver = (Driver) driverClass.newInstance();
@@ -31,7 +33,15 @@ public class SignInServlet extends HttpServlet {
             preparedStatement.setString(2, email);
             preparedStatement.setString(3, password);
             preparedStatement.executeUpdate();
-            request.getSession().setAttribute("isConnected", true);
+            Cookie pseudoCookie = new Cookie("pseudoCookie", pseudo);
+            Cookie onlineCookie = new Cookie("onlineCookie", String.valueOf(true));
+            pseudoCookie.setPath("/");
+            pseudoCookie.setMaxAge(60*60*24*14);
+            onlineCookie.setPath("/");
+            onlineCookie.setMaxAge(60*60*24*14);
+            response.addCookie(pseudoCookie);
+            response.addCookie(onlineCookie);
+            request.getSession().setAttribute("online", true);
             request.getSession().setAttribute("pseudo", pseudo);
             response.sendRedirect("/home");
 

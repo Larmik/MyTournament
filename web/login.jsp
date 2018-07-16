@@ -15,7 +15,7 @@
     <input type="submit" value="Connexion"/>
 </form>
 <c:if test="${not empty requestScope.error}">
-    <p>${requestScope.error}</p>
+    <script> alert('Identifiants incorrects')</script>
 </c:if>
 </body>
 </html>

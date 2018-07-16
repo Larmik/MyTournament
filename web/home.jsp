@@ -17,9 +17,7 @@
 
 <c:if test="${not empty requestScope.success}">
     <script>
-        window.addEventListener("load", function () {
-            alert("${success}");
-        })
+        alert("${success}");
     </script>
 </c:if>
 </body>

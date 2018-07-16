@@ -4,6 +4,7 @@ import com.mysql.jdbc.Driver;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,7 +16,7 @@ import java.util.List;
 
 @WebServlet(name = "CreateServlet", urlPatterns = "/create")
 public class CreateServlet extends HttpServlet {
-
+    private boolean isConnected = false;
     private List<Integer> playerId = new ArrayList<>();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -62,7 +63,14 @@ public class CreateServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<String> playerNames = new ArrayList<>();
         List<String> playerSelected = new ArrayList<>();
-        boolean isConnected = (boolean) request.getSession().getAttribute("isConnected");
+        Cookie[] cookies = request.getCookies();
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals("onlineCookie")) {
+                    isConnected = Boolean.parseBoolean(cookie.getValue());
+                }
+            }
+        }
         if (isConnected) {
             AddPlayerServlet.sqlRequestPlayer(playerNames, playerSelected, request);
             this.getServletContext().getRequestDispatcher("/create_tournament.jsp").forward(request, response);

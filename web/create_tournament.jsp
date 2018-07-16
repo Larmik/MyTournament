@@ -32,14 +32,14 @@
     <fieldset>
         <legend>Sélectionnez vos joueurs :</legend>
         <select name="players">
-            <c:forEach items="${requestScope.playerNames}" var="player">
+            <c:forEach items="${sessionScope.playerNames}" var="player">
                 <option>${player}</option>
             </c:forEach>
         </select>
         <input type="submit" value="Ajouter" onclick="form.action='/addplayer';">
 
 
-        <c:forEach items="${requestScope.playerSelected}" var="selected">
+        <c:forEach items="${sessionScope.playerSelected}" var="selected">
             <p>${selected}</p>
         </c:forEach>
     </fieldset>

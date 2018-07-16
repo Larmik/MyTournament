@@ -33,7 +33,7 @@ public class SignInServlet extends HttpServlet {
             preparedStatement.executeUpdate();
             request.getSession().setAttribute("isConnected", true);
             request.getSession().setAttribute("pseudo", pseudo);
-            response.sendRedirect("/index.jsp");
+            response.sendRedirect("/home");
 
         } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | SQLException e) {
             e.printStackTrace();

@@ -15,16 +15,17 @@ import java.util.List;
 @WebServlet(name = "AddPlayerServlet", urlPatterns = "/addplayer")
 public class AddPlayerServlet extends HttpServlet {
 
-    private List<String> playerSelected = new ArrayList<>();
+    List<String> playerSelected = new ArrayList<>();
     private List<String> playerNames = new ArrayList<>();
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String player = request.getParameter("players");
-        if (!playerSelected.contains(player))
-        playerSelected.add(player);
+        if (!playerSelected.contains(player)) {
+            playerSelected.add(player);
+        }
         sqlRequestPlayer(playerNames, playerSelected, request);
-        request.setAttribute("playerSelected", playerSelected);
+        request.getSession().setAttribute("playerSelected", playerSelected);
         this.getServletContext().getRequestDispatcher("/create_tournament.jsp").forward(request, response);
 
     }
@@ -54,8 +55,7 @@ public class AddPlayerServlet extends HttpServlet {
         } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | SQLException e) {
             e.printStackTrace();
         }
-        request.setAttribute("playerNames", playerNames);
+        request.getSession().setAttribute("playerNames", playerNames);
 
     }
-
 }

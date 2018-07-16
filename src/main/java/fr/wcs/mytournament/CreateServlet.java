@@ -23,7 +23,6 @@ public class CreateServlet extends HttpServlet {
         String sport = request.getParameter("sports");
         String type = request.getParameter("type");
         String mode = request.getParameter("mode");
-        List<String> playerNames = (List<String>) request.getSession().getAttribute("playerNames");
         List<String> playerSelected = (List<String>) request.getSession().getAttribute("playerSelected");
 
         if (name == null || name.isEmpty()) {
@@ -45,8 +44,6 @@ public class CreateServlet extends HttpServlet {
                 preparedStatement.setString(4, mode);
                 preparedStatement.executeUpdate();
 
-
-
             } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | SQLException e) {
                 e.printStackTrace();
             }
@@ -57,9 +54,6 @@ public class CreateServlet extends HttpServlet {
             for (int currentPlayerId : playerId) {
                 playerToTournament(name, currentPlayerId);
             }
-
-
-
             request.setAttribute("success", "Tournoi créé avec succès !");
             this.getServletContext().getRequestDispatcher("/home.jsp").forward(request, response);
         }
@@ -92,8 +86,6 @@ public class CreateServlet extends HttpServlet {
             while (result.next()) {
                 id = result.getInt("id");
             }
-
-
         } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | SQLException e) {
             e.printStackTrace();
         }
@@ -116,19 +108,14 @@ public class CreateServlet extends HttpServlet {
                 id = result.getInt("id");
             }
 
-
             PreparedStatement preparedStatement = connection
                     .prepareStatement("INSERT INTO players_championship VALUES(?, ?)");
             preparedStatement.setInt(1, id);
             preparedStatement.setInt(2, playerId);
             preparedStatement.executeUpdate();
 
-
         } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | SQLException e) {
             e.printStackTrace();
         }
     }
-
-
-
 }

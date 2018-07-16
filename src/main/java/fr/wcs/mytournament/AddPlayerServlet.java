@@ -18,6 +18,30 @@ public class AddPlayerServlet extends HttpServlet {
     List<String> playerSelected = new ArrayList<>();
     private List<String> playerNames = new ArrayList<>();
 
+    public static void sqlRequestPlayer(List<String> playerNames, List<String> playerSelected, HttpServletRequest request) {
+        try {
+            Class driverClass = Class.forName("com.mysql.jdbc.Driver");
+            Driver driver = (Driver) driverClass.newInstance();
+            DriverManager.registerDriver(driver);
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/myTournament", "root", "jecode4wcs");
+
+            PreparedStatement preparedStatement = connection
+                    .prepareStatement("SELECT pseudo FROM players");
+            ResultSet result = preparedStatement.executeQuery();
+
+            playerNames.clear();
+            while (result.next()) {
+                if (!playerSelected.contains(result.getString("pseudo"))) {
+                    playerNames.add(result.getString("pseudo"));
+                }
+            }
+
+        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | SQLException e) {
+            e.printStackTrace();
+        }
+        request.getSession().setAttribute("playerNames", playerNames);
+
+    }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String player = request.getParameter("players");
@@ -31,31 +55,6 @@ public class AddPlayerServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-    }
-
-    public static void sqlRequestPlayer(List<String> playerNames, List<String> playerSelected, HttpServletRequest request){
-        try {
-            Class driverClass = Class.forName("com.mysql.jdbc.Driver");
-            Driver driver = (Driver) driverClass.newInstance();
-            DriverManager.registerDriver(driver);
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/myTournament", "root", "jecode4wcs");
-
-            PreparedStatement preparedStatement = connection
-                    .prepareStatement("SELECT pseudo FROM players");
-            ResultSet result = preparedStatement.executeQuery();
-
-            playerNames.clear();
-            while (result.next()) {
-                if (! playerSelected.contains(result.getString("pseudo"))) {
-                    playerNames.add(result.getString("pseudo"));
-                }
-            }
-
-        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | SQLException e) {
-            e.printStackTrace();
-        }
-        request.getSession().setAttribute("playerNames", playerNames);
 
     }
 }

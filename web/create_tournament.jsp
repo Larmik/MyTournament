@@ -8,7 +8,7 @@
 <jsp:include page="header.jsp"/>
 <form method="post" action="${pageContext.request.contextPath}/create">
     <label for="name">Donnez un nom à votre tournoi :</label>
-    <input type="text" name="name" id="name" />
+    <input type="text" name="name" id="name"/>
     <c:if test="${not empty requestScope.error}">
         <p>${error}</p>
     </c:if>

@@ -8,7 +8,7 @@
 <jsp:include page="header.jsp"/>
 <form method="post" action="${pageContext.request.contextPath}/create">
     <label for="name">Donnez un nom à votre tournoi :</label>
-    <input type="text" name="name" id="name" />
+    <input type="text" name="name" id="name"/>
     <c:if test="${not empty requestScope.error}">
         <p>${error}</p>
     </c:if>
@@ -32,27 +32,22 @@
     <fieldset>
         <legend>Sélectionnez vos joueurs :</legend>
         <select name="players">
-            <c:forEach items="${requestScope.playerNames}" var="player">
+            <c:forEach items="${sessionScope.playerNames}" var="player">
                 <option>${player}</option>
             </c:forEach>
         </select>
         <input type="submit" value="Ajouter" onclick="form.action='/addplayer';">
 
 
-        <c:forEach items="${requestScope.playerSelected}" var="selected">
+        <c:forEach items="${sessionScope.playerSelected}" var="selected">
             <p>${selected}</p>
         </c:forEach>
     </fieldset>
     <input type="submit" value="C'est parti !"/>
 
 </form>
-<c:if test="${not empty requestScope.success}">
-    <script>
-        window.addEventListener("load",function(){
-            alert("${success}");
-        })
-    </script>
+<c:if test="${not empty requestScope.emptyError}">
+    <script>alert('Veuillez choisir au moins deux joueurs')</script>
 </c:if>
-
 </body>
 </html>

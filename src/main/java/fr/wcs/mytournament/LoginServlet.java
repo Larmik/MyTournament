@@ -4,19 +4,41 @@ import com.mysql.jdbc.Driver;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.*;
 
-@WebServlet(name = "LoginServlet", urlPatterns = {"/login", "/home"})
+@WebServlet(name = "LoginServlet", urlPatterns = {"/login"})
 public class LoginServlet extends HttpServlet {
+
+    private String pseudoValue;
+    private boolean isOnline = false;
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Cookie[] cookies = request.getCookies();
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals("pseudoCookie")) {
+                    pseudoValue = cookie.getValue();
+                }
+                if (cookie.getName().equals("isOnline")) {
+                    isOnline = Boolean.parseBoolean(cookie.getValue());
+                }
+            }
+        } else {
+            pseudoValue = request.getParameter("pseudo");
+        }
 
-        String pseudoValue = request.getParameter("pseudo");
-        String passwordValue = request.getParameter("password");
-
+        if (isOnline) {
+            request.getSession().setAttribute("online", true);
+            response.sendRedirect("/home");
+        } else {
+            request.setAttribute("error", "Identifiants incorrects !");
+            this.getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
+        }
 
         try {
             Class driverClass = Class.forName("com.mysql.jdbc.Driver");
@@ -27,25 +49,20 @@ public class LoginServlet extends HttpServlet {
             PreparedStatement preparedStatement = connection
                     .prepareStatement("SELECT pseudo, password FROM players");
             ResultSet result = preparedStatement.executeQuery();
-
+            String passwordValue = request.getParameter("password");
             while (result.next()) {
                 String password = result.getString("password");
                 String pseudo = result.getString("pseudo");
                 if (pseudoValue.contains(pseudo) && passwordValue.contains(password)) {
-                    request.getSession().setAttribute("isConnected", true);
+                    Cookie onlineCookie = new Cookie("onlineCookie", String.valueOf(true));
+                    onlineCookie.setPath("/");
+                    onlineCookie.setMaxAge(60*60*24*14);
+                    response.addCookie(onlineCookie);
                     break;
                 }
             }
 
-            if ((boolean) request.getSession().getAttribute("isConnected")) {
-                request.getSession().setAttribute("isConnected", true);
-                request.getSession().setAttribute("pseudo", pseudoValue);
-                this.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
-                response.sendRedirect("/index.jsp");
-            } else {
-                request.setAttribute("error", "Identifiants incorrects !");
-                this.getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
-            }
+
 
 
         } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | SQLException e) {

@@ -1,8 +1,7 @@
 <component name="ArtifactManager">
-  <artifact type="exploded-war" name="MyTournament:Web exploded">
-    <output-path>$PROJECT_DIR$/out/artifacts/MyTournament_Web_exploded</output-path>
+  <artifact type="exploded-war" name="MyTournament:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/MyTournament_war_exploded</output-path>
     <root id="root">
-      <element id="javaee-facet-resources" facet="MyTournament/web/Web" />
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
           <element id="module-output" name="MyTournament" />
@@ -12,6 +11,7 @@
           <element id="library" level="project" name="Maven: mysql:mysql-connector-java:5.1.46" />
         </element>
       </element>
+      <element id="javaee-facet-resources" facet="MyTournament/web/Web" />
     </root>
   </artifact>
 </component>

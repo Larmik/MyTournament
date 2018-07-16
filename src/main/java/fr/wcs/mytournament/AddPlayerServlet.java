@@ -15,24 +15,10 @@ import java.util.List;
 @WebServlet(name = "AddPlayerServlet", urlPatterns = "/addplayer")
 public class AddPlayerServlet extends HttpServlet {
 
-    private List<String> playerSelected = new ArrayList<>();
+    List<String> playerSelected = new ArrayList<>();
     private List<String> playerNames = new ArrayList<>();
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        String player = request.getParameter("players");
-        playerSelected.add(player);
-        sqlRequestPlayer(playerNames, playerSelected, request);
-        request.setAttribute("playerSelected", playerSelected);
-        this.getServletContext().getRequestDispatcher("/create_tournament.jsp").forward(request, response);
-
-    }
-
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-    }
-
-    public static void sqlRequestPlayer(List<String> playerNames, List<String> playerSelected, HttpServletRequest request){
+    public static void sqlRequestPlayer(List<String> playerNames, List<String> playerSelected, HttpServletRequest request) {
         try {
             Class driverClass = Class.forName("com.mysql.jdbc.Driver");
             Driver driver = (Driver) driverClass.newInstance();
@@ -45,7 +31,7 @@ public class AddPlayerServlet extends HttpServlet {
 
             playerNames.clear();
             while (result.next()) {
-                if (! playerSelected.contains(result.getString("pseudo"))) {
+                if (!playerSelected.contains(result.getString("pseudo"))) {
                     playerNames.add(result.getString("pseudo"));
                 }
             }
@@ -53,8 +39,22 @@ public class AddPlayerServlet extends HttpServlet {
         } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | SQLException e) {
             e.printStackTrace();
         }
-        request.setAttribute("playerNames", playerNames);
+        request.getSession().setAttribute("playerNames", playerNames);
 
     }
 
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String player = request.getParameter("players");
+        if (!playerSelected.contains(player)) {
+            playerSelected.add(player);
+        }
+        sqlRequestPlayer(playerNames, playerSelected, request);
+        request.getSession().setAttribute("playerSelected", playerSelected);
+        this.getServletContext().getRequestDispatcher("/create_tournament.jsp").forward(request, response);
+
+    }
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+    }
 }

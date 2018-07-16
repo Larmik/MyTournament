@@ -1,31 +1,22 @@
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<c:if test="${cookie.onlineCookie.value.equals('true')}">
+    <jsp:forward page="/home"/>
+</c:if>
+
 <html>
 <head>
-    <title>Accueil - My Tournament</title>
+    <title>My Tournament</title>
 </head>
 <body>
-    <jsp:include page="header.jsp"/>
-    <img src="http://via.placeholder.com/600x400">
-    <p>Lorem ipsum dolor amet tumblr lomo synth shoreditch kinfolk, pok pok cornhole taiyaki cold-pressed mlkshk try-hard.
-        DIY normcore raw denim, literally activated charcoal food truck cornhole retro williamsburg franzen photo booth.
-        Cloud bread migas humblebrag photo booth, plaid brooklyn offal narwhal celiac YOLO. Health goth blue bottle hell of
-        tilde 3 wolf moon kitsch, taxidermy twee farm-to-table try-hard. Cloud bread af woke, synth lyft listicle thundercats
-        master cleanse blog unicorn ennui jean shorts beard narwhal. Af tumblr meh glossier health goth stumptown fam.
-    </p>
-    <c:if test="${!sessionScope.isConnected}">
-        <a href="${pageContext.request.contextPath}/signin.jsp">Je m'inscris</a>
-        <span>ou</span>
-        <a href="${pageContext.request.contextPath}/login.jsp">Je me connecte</a>
-    </c:if>
-    <c:if test="${not empty requestScope.success}">
-        <script>
-            window.addEventListener("load",function(){
-                alert("${success}");
-            })
-        </script>
-    </c:if>
+
+<h1>My Tournament</h1>
+<img src="http://via.placeholder.com/600x400">
+<p>Lorem ipsum dolor amet tumblr lomo synth shoreditch kinfolk.
+</p>
+<a href="${pageContext.request.contextPath}/signin.jsp">Je m'inscris</a>
+<span>ou</span>
+<a href="${pageContext.request.contextPath}/login.jsp">Je me connecte</a>
 
 </body>
 </html>

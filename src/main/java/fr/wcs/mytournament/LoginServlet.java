@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.*;
 
-@WebServlet(name = "LoginServlet", urlPatterns = {"/login", "/home"})
+@WebServlet(name = "LoginServlet", urlPatterns = {"/login"})
 public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -40,8 +40,7 @@ public class LoginServlet extends HttpServlet {
             if ((boolean) request.getSession().getAttribute("isConnected")) {
                 request.getSession().setAttribute("isConnected", true);
                 request.getSession().setAttribute("pseudo", pseudoValue);
-                this.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
-                response.sendRedirect("/index.jsp");
+                response.sendRedirect("/home");
             } else {
                 request.setAttribute("error", "Identifiants incorrects !");
                 this.getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);

@@ -26,6 +26,8 @@ public class CreateServlet extends HttpServlet {
         String mode = request.getParameter("mode");
         if (name == null || name.isEmpty()) {
             request.setAttribute("error", "Veuillez nommer votre tournoi !");
+            AddPlayerServlet.sqlRequestPlayer(playerNames, playerSelected, request);
+            this.getServletContext().getRequestDispatcher("/create_tournament.jsp").forward(request, response);
         } else {
             try {
                 Class driverClass = Class.forName("com.mysql.jdbc.Driver");
@@ -47,7 +49,6 @@ public class CreateServlet extends HttpServlet {
             }
             request.setAttribute("success", "Tournoi créé avec succès !");
             this.getServletContext().getRequestDispatcher("/home.jsp").forward(request, response);
-            response.sendRedirect("/");
         }
 
     }
@@ -61,8 +62,6 @@ public class CreateServlet extends HttpServlet {
         } else {
             response.sendRedirect("/");
         }
-
-
     }
 
 

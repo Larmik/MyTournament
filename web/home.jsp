@@ -1,10 +1,4 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: wilder
-  Date: 14/07/18
-  Time: 16:16
-  To change this template use File | Settings | File Templates.
---%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -19,11 +13,7 @@
     tilde 3 wolf moon kitsch, taxidermy twee farm-to-table try-hard. Cloud bread af woke, synth lyft listicle thundercats
     master cleanse blog unicorn ennui jean shorts beard narwhal. Af tumblr meh glossier health goth stumptown fam.
 </p>
-<c:if test="${!sessionScope.isConnected}">
-    <a href="${pageContext.request.contextPath}/signin.jsp">Je m'inscris</a>
-    <span>ou</span>
-    <a href="${pageContext.request.contextPath}/login.jsp">Je me connecte</a>
-</c:if>
+
 <c:if test="${not empty requestScope.success}">
     <script>
         window.addEventListener("load",function(){

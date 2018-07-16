@@ -46,13 +46,6 @@
     <input type="submit" value="C'est parti !"/>
 
 </form>
-<c:if test="${not empty requestScope.success}">
-    <script>
-        window.addEventListener("load",function(){
-            alert("${success}");
-        })
-    </script>
-</c:if>
 
 </body>
 </html>

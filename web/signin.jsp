@@ -4,7 +4,7 @@
     <title>S'inscrire - My Tournament</title>
 </head>
 <body>
-    <jsp:include page="header.jsp"/>
+<jsp:include page="index.jsp"/>
     <h3>Inscription</h3>
     <form method="post" action="${pageContext.request.contextPath}/signin">
         <label for="email_form">Entrez votre adresse mail :</label>

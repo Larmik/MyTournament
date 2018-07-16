@@ -5,9 +5,9 @@
     <title>Se connecter - My Tournament</title>
 </head>
 <body>
-    <jsp:include page="header.jsp"/>
+    <jsp:include page="index.jsp"/>
     <h3>Connexion</h3>
-    <form method="post" action="${pageContext.request.contextPath}/home">
+    <form method="post" action="${pageContext.request.contextPath}/login">
         <label for="pseudo_form">Pseudo :</label>
         <input type="text" id="pseudo_form" name="pseudo" required/>
         <label for="password_form">Mot de passe :</label>

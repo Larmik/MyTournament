@@ -21,6 +21,7 @@ public class AddPlayerServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String player = request.getParameter("players");
+        if (!playerSelected.contains(player))
         playerSelected.add(player);
         sqlRequestPlayer(playerNames, playerSelected, request);
         request.setAttribute("playerSelected", playerSelected);

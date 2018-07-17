@@ -9,9 +9,9 @@
 <h3>Créer un tournoi</h3>
 <form method="post" action="${pageContext.request.contextPath}/create">
     <label for="name">Donnez un nom à votre tournoi :</label>
-    <input type="text" name="name" id="name"/>
+    <input type="text" name="name" id="name" />
     <c:if test="${not empty requestScope.error}">
-        <p>${error}</p>
+        <script>alert('Veuillez nommer votre tournoi')</script>
     </c:if>
     <fieldset>
         <legend>Choisissez votre sport :</legend>

@@ -23,6 +23,7 @@ public class TournamentServlet extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("id"));
         TournamentModel tournamentModel = null;
         List<PlayerModel> playerList = new ArrayList<>();
+        List<MatchModel> matchList = new ArrayList<>();
         try {
             Class driverClass = Class.forName("com.mysql.jdbc.Driver");
             Driver driver = (Driver) driverClass.newInstance();
@@ -53,9 +54,18 @@ public class TournamentServlet extends HttpServlet {
             e.printStackTrace();
         }
 
+        for (int i = 0; i < playerList.size(); i++) {
+            for (int j = 0; j < playerList.size(); j++) {
+                if (i != j) {
+                    matchList.add(new MatchModel(i, playerList.get(i).getPseudo(), playerList.get(j).getPseudo()));
+                }
+            }
+        }
+
         if (tournamentModel != null) {
             request.getSession().setAttribute("tournament", tournamentModel);
             request.getSession().setAttribute("players", playerList);
+            request.getSession().setAttribute("matches", matchList);
             this.getServletContext().getRequestDispatcher("/consult_tournament.jsp").forward(request, response);
         }
     }

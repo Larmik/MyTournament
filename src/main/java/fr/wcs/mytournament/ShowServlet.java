@@ -47,13 +47,13 @@ public class ShowServlet extends HttpServlet {
                     numPlayers++;
                 }
                 tournamentList.add(new TournamentModel(id, name, sport, type, mode, numPlayers));
-
             }
-
-
         } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | SQLException e) {
             e.printStackTrace();
         }
+
+
+
         request.getSession().setAttribute("tournamentList", tournamentList);
         this.getServletContext().getRequestDispatcher("/show_tournaments.jsp").forward(request, response);
     }

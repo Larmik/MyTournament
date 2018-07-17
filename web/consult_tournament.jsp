@@ -34,5 +34,13 @@
     </c:forEach>
 </table>
 <h5>Calendrier</h5>
+<c:forEach items="${sessionScope.matches}" var="match">
+    <div style="border: 1px black solid">
+       ${match.player1}
+      V.S
+      ${match.player2}
+        <a href="${pageContext.request.contextPath}/match">Jouer ce match</a>
+    </div>
+</c:forEach>
 </body>
 </html>

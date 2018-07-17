@@ -6,6 +6,7 @@
 </head>
 <body>
 <jsp:include page="header.jsp"/>
+<h3>Créer un tournoi</h3>
 <form method="post" action="${pageContext.request.contextPath}/create">
     <label for="name">Donnez un nom à votre tournoi :</label>
     <input type="text" name="name" id="name"/>
@@ -14,20 +15,20 @@
     </c:if>
     <fieldset>
         <legend>Choisissez votre sport :</legend>
-        <input type="radio" name="sports" value="darts" checked> Fléchettes
-        <input type="radio" name="sports" value="bowling"> Pétanque
-        <input type="radio" name="sports" value="baby-foot"> Baby-Foot
+        <input type="radio" name="sports" value="Fléchettes" checked> Fléchettes
+        <input type="radio" name="sports" value="Pétanque"> Pétanque
+        <input type="radio" name="sports" value="Baby-foot"> Baby-Foot
     </fieldset>
     <fieldset>
         <legend>Choisissez votre type de tournoi :</legend>
-        <input type="radio" name="type" value="championship" checked>Championnat
-        <input type="radio" name="type" value="groups">Poules avec élimination directe
-        <input type="radio" name="type" value="finales">Elimination directe
+        <input type="radio" name="type" value="Championnat" checked>Championnat
+        <input type="radio" name="type" value="Poules/Elimination">Poules avec élimination directe
+        <input type="radio" name="type" value="Elimination">Elimination directe
     </fieldset>
     <fieldset>
         <legend>Choisissez votre mode :</legend>
-        <input type="radio" name="mode" value="individual" checked>Individuel
-        <input type="radio" name="mode" value="teams">Par équipes
+        <input type="radio" name="mode" value="Individuel" checked>Individuel
+        <input type="radio" name="mode" value="Par équipes">Par équipes
     </fieldset>
     <fieldset>
         <legend>Sélectionnez vos joueurs :</legend>

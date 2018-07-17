@@ -3,6 +3,7 @@
 <html>
 <head>
     <title>Mes tournois - My Tournament</title>
+    <meta charset="UTF-8">
 </head>
 <body>
 <jsp:include page="header.jsp"/>
@@ -13,17 +14,19 @@
         <th>Discipline</th>
         <th>Type de tournoi</th>
         <th>Mode de jeu</th>
+        <th>Participants</th>
     </tr>
-
     <c:forEach items="${sessionScope.tournamentList}" var="tournament">
         <tr>
             <td>${tournament.name}</td>
             <td>${tournament.sport}</td>
             <td>${tournament.type}</td>
             <td>${tournament.mode}</td>
+            <td>${tournament.players} Joueurs</td>
+            <td><a href="${pageContext.request.contextPath}/tournament?id=${tournament.id}">Consulter</a> </td>
         </tr>
     </c:forEach>
-
 </table>
 </body>
 </html>
+

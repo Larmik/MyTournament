@@ -4,9 +4,10 @@
 <h1>My Tournament</h1>
 <nav>
     <ul>
-        <li><a href="index.jsp">Accueil</a></li>
+        <li><a href="home">Accueil</a></li>
             <li><a href="create">Créer un tournoi</a></li>
             <li><a href="index.jsp">Créer une équipe</a></li>
+            <li><a href="show">Mes tournois</a></li>
     </ul>
     <c:if test="${cookie.onlineCookie.value.equals('true')}">
         <div>

@@ -20,12 +20,13 @@ public class CreateServlet extends HttpServlet {
     private List<Integer> playerId = new ArrayList<>();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
         String name = request.getParameter("name");
         String sport = request.getParameter("sports");
         String type = request.getParameter("type");
         String mode = request.getParameter("mode");
         List<String> playerSelected = (List<String>) request.getSession().getAttribute("playerSelected");
-        if (playerSelected != null) {
+        if (playerSelected != null && playerSelected.size() > 1) {
             if (name == null || name.isEmpty()) {
                 request.setAttribute("error", "Veuillez nommer votre tournoi !");
                 this.getServletContext().getRequestDispatcher("/create_tournament.jsp").forward(request, response);

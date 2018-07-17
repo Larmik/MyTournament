@@ -1,15 +1,26 @@
 package fr.wcs.mytournament;
 
 public class PlayerModel {
-
+    private int position;
     private String pseudo;
-    private String email;
-    private String password;
+    private int points;
+    private int wins;
+    private int loses;
 
-    public PlayerModel(String pseudo, String email, String password) {
+    public PlayerModel(int position, String pseudo, int points, int wins, int loses) {
+        this.position = position;
         this.pseudo = pseudo;
-        this.email = email;
-        this.password = password;
+        this.points = points;
+        this.wins = wins;
+        this.loses = loses;
+    }
+
+    public int getPosition() {
+        return position;
+    }
+
+    public void setPosition(int position) {
+        this.position = position;
     }
 
     public String getPseudo() {
@@ -20,19 +31,27 @@ public class PlayerModel {
         this.pseudo = pseudo;
     }
 
-    public String getEmail() {
-        return email;
+    public int getPoints() {
+        return points;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setPoints(int points) {
+        this.points = points;
     }
 
-    public String getPassword() {
-        return password;
+    public int getWins() {
+        return wins;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setWins(int wins) {
+        this.wins = wins;
+    }
+
+    public int getLoses() {
+        return loses;
+    }
+
+    public void setLoses(int loses) {
+        this.loses = loses;
     }
 }

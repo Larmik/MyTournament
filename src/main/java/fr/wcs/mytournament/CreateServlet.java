@@ -123,7 +123,7 @@ public class CreateServlet extends HttpServlet {
             }
 
             PreparedStatement preparedStatement = connection
-                    .prepareStatement("INSERT INTO players_championship VALUES(?, ?)");
+                    .prepareStatement("INSERT INTO players_championship VALUES(?, ?, 0, 0)");
             preparedStatement.setInt(1, id);
             preparedStatement.setInt(2, playerId);
             preparedStatement.executeUpdate();
@@ -132,4 +132,6 @@ public class CreateServlet extends HttpServlet {
             e.printStackTrace();
         }
     }
+
+
 }

@@ -42,12 +42,13 @@ public class TournamentServlet extends HttpServlet {
                 tournamentModel = new TournamentModel(id, name, sport, type, mode, 0);
             }
 
-            PreparedStatement playerStatement = connection.prepareStatement("SELECT players.pseudo FROM players JOIN players_championship ON players.id=players_championship.id_players WHERE players_championship.id = ?");
+            PreparedStatement playerStatement = connection.prepareStatement("SELECT players.pseudo, players.id FROM players JOIN players_championship ON players.id=players_championship.id_players WHERE players_championship.id = ?");
             playerStatement.setInt(1, id);
             ResultSet playerResult = playerStatement.executeQuery();
             while (playerResult.next()) {
                 String pseudo = playerResult.getString("pseudo");
-                playerList.add(new PlayerModel(1, pseudo, 0, 0, 0));
+                int playerId = playerResult.getInt("id");
+                playerList.add(new PlayerModel(1,playerId, pseudo, 0, 0, 0));
             }
 
         } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | SQLException e) {
@@ -57,7 +58,7 @@ public class TournamentServlet extends HttpServlet {
         for (int i = 0; i < playerList.size(); i++) {
             for (int j = 0; j < playerList.size(); j++) {
                 if (i != j) {
-                    matchList.add(new MatchModel(i, playerList.get(i).getPseudo(), playerList.get(j).getPseudo()));
+                    matchToTournament(playerList.get(i).getId(), playerList.get(j).getId(), id);
                 }
             }
         }
@@ -69,4 +70,26 @@ public class TournamentServlet extends HttpServlet {
             this.getServletContext().getRequestDispatcher("/consult_tournament.jsp").forward(request, response);
         }
     }
+
+    public void matchToTournament(int player1, int player2, int championshipId) {
+
+        try {
+            Class driverClass = Class.forName("com.mysql.jdbc.Driver");
+            Driver driver = (Driver) driverClass.newInstance();
+            DriverManager.registerDriver(driver);
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/myTournament", "root", "jecode4wcs");
+
+
+            PreparedStatement preparedStatement = connection
+                    .prepareStatement("INSERT INTO matches VALUES(null, 0, ?, ?,null, ?)");
+            preparedStatement.setInt(1, player1);
+            preparedStatement.setInt(2, player2);
+            preparedStatement.setInt(3, championshipId);
+            preparedStatement.executeUpdate();
+
+        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

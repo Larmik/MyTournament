@@ -1,18 +1,27 @@
 package fr.wcs.mytournament;
 
 public class PlayerModel {
-    private int position;
+    private int position, id;
     private String pseudo;
     private int points;
     private int wins;
     private int loses;
 
-    public PlayerModel(int position, String pseudo, int points, int wins, int loses) {
+    public PlayerModel(int position, int id, String pseudo, int points, int wins, int loses) {
         this.position = position;
+        this.id = id;
         this.pseudo = pseudo;
         this.points = points;
         this.wins = wins;
         this.loses = loses;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getPosition() {

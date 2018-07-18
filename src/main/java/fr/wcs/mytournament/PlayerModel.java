@@ -1,6 +1,7 @@
 package fr.wcs.mytournament;
 
 public class PlayerModel {
+
     private int position, id;
     private String pseudo;
     private int points;

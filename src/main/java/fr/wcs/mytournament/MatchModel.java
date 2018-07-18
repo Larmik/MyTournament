@@ -2,22 +2,22 @@ package fr.wcs.mytournament;
 
 public class MatchModel {
 
-    private int journey;
+    private int id;
     private String player1;
     private String player2;
 
-    public MatchModel(int journey, String player1, String player2) {
-        this.journey = journey;
+    public MatchModel(int id, String player1, String player2) {
+        this.id = id;
         this.player1 = player1;
         this.player2 = player2;
     }
 
-    public int getJourney() {
-        return journey;
+    public int getId() {
+        return id;
     }
 
-    public void setJourney(int journey) {
-        this.journey = journey;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getPlayer1() {

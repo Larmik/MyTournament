@@ -1,7 +1,5 @@
 package fr.wcs.mytournament;
 
-import com.mysql.jdbc.Driver;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
@@ -9,13 +7,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 @WebServlet(name = "SignInServlet", urlPatterns = "/signin")
 public class SignInServlet extends HttpServlet {
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String email = request.getParameter("email");
         String pseudo = request.getParameter("pseudo");
@@ -51,7 +48,7 @@ public class SignInServlet extends HttpServlet {
 
     private void cookieConfig(Cookie cookie, HttpServletResponse response) {
         cookie.setPath("/");
-        cookie.setMaxAge(60*60*24*14);
+        cookie.setMaxAge(60 * 60 * 24 * 14);
         response.addCookie(cookie);
     }
 

@@ -1,14 +1,14 @@
 package fr.wcs.mytournament;
 
-import com.mysql.jdbc.Driver;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.*;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,15 +23,10 @@ public class ShowServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         List<TournamentModel> tournamentList = new ArrayList<>();
         try {
-            Class driverClass = Class.forName("com.mysql.jdbc.Driver");
-            Driver driver = (Driver) driverClass.newInstance();
-            DriverManager.registerDriver(driver);
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/myTournament", "root", "jecode4wcs");
-
-            PreparedStatement preparedStatement = connection
+            PreparedStatement preparedStatement = TournamentServlet.instantiateSQL()
                     .prepareStatement("SELECT * FROM championship");
             ResultSet result = preparedStatement.executeQuery();
-            PreparedStatement playerStatement = connection.prepareStatement("SELECT id_players FROM players_championship WHERE id = ?");
+            PreparedStatement playerStatement = TournamentServlet.instantiateSQL().prepareStatement("SELECT id_players FROM players_championship WHERE id = ?");
 
             while (result.next()) {
                 int id = result.getInt("id");
@@ -47,11 +42,9 @@ public class ShowServlet extends HttpServlet {
                 }
                 tournamentList.add(new TournamentModel(id, name, sport, type, mode, numPlayers));
             }
-        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
-
-
         request.getSession().setAttribute("tournamentList", tournamentList);
         this.getServletContext().getRequestDispatcher("/show_tournaments.jsp").forward(request, response);
     }

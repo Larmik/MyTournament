@@ -33,19 +33,16 @@ public class TournamentServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         int id = Integer.parseInt(request.getParameter("id"));
         TournamentModel tournamentModel = null;
         List<PlayerModel> playerList = new ArrayList<>();
         List<MatchModel> matchList = new ArrayList<>();
-
         try {
             tournamentModel = writePlayers(id, playerList, tournamentModel);
             readMatches(matchList, id);
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         if (tournamentModel != null) {
             request.getSession().setAttribute("tournament", tournamentModel);
             request.getSession().setAttribute("players", playerList);
@@ -79,13 +76,14 @@ public class TournamentServlet extends HttpServlet {
     }
 
     private void readMatches(List<MatchModel> matchList, int id) throws SQLException {
-        PreparedStatement requestStatement = instantiateSQL().prepareStatement("SELECT p1.pseudo as player1, p2.pseudo as player2 FROM matches INNER JOIN players p1 ON p1.id = matches.id_player1 INNER JOIN players p2 ON p2.id = matches.id_player2 WHERE matches.id_championship = ?");
+        PreparedStatement requestStatement = instantiateSQL().prepareStatement("SELECT matches.id AS id, p1.pseudo as player1, p2.pseudo as player2 FROM matches INNER JOIN players p1 ON p1.id = matches.id_player1 INNER JOIN players p2 ON p2.id = matches.id_player2 WHERE matches.id_championship = ?");
         requestStatement.setInt(1, id);
         ResultSet requestResult = requestStatement.executeQuery();
         while (requestResult.next()) {
+            int matchId = requestResult.getInt("id");
             String pseudo1 = requestResult.getString("player1");
             String pseudo2 = requestResult.getString("player2");
-            matchList.add(new MatchModel(0, pseudo1, pseudo2));
+            matchList.add(new MatchModel(matchId, pseudo1, pseudo2));
         }
     }
 

@@ -1,7 +1,5 @@
 package fr.wcs.mytournament;
 
-import com.mysql.jdbc.Driver;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
@@ -9,7 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.*;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,11 +17,9 @@ import java.util.List;
 @WebServlet(name = "CreateServlet", urlPatterns = "/create")
 public class CreateServlet extends HttpServlet {
 
-
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         List<Integer> playerId = new ArrayList<>();
-
         int id = 0;
         String name = request.getParameter("name");
         String sport = request.getParameter("sports");
@@ -65,8 +63,8 @@ public class CreateServlet extends HttpServlet {
         List<String> playerNames = new ArrayList<>();
         List<String> playerSelected = new ArrayList<>();
         boolean isConnected = false;
-
         Cookie[] cookies = request.getCookies();
+
         if (cookies != null) {
             for (Cookie cookie : cookies) {
                 if (cookie.getName().equals("onlineCookie")) {
@@ -85,60 +83,46 @@ public class CreateServlet extends HttpServlet {
     private int getPlayerId(String pseudo) {
         int id = 0;
         try {
-            Class driverClass = Class.forName("com.mysql.jdbc.Driver");
-            Driver driver = (Driver) driverClass.newInstance();
-            DriverManager.registerDriver(driver);
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/myTournament", "root", "jecode4wcs");
-
-            PreparedStatement preparedStatement = connection
+            PreparedStatement preparedStatement = TournamentServlet.instantiateSQL()
                     .prepareStatement("SELECT id FROM players WHERE pseudo = ?");
             preparedStatement.setString(1, pseudo);
             ResultSet result = preparedStatement.executeQuery();
             while (result.next()) {
                 id = result.getInt("id");
             }
-        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
-
         return id;
     }
 
     private void playerToTournament(String championshipName, int playerId) {
         int id = 0;
         try {
-            Class driverClass = Class.forName("com.mysql.jdbc.Driver");
-            Driver driver = (Driver) driverClass.newInstance();
-            DriverManager.registerDriver(driver);
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/myTournament", "root", "jecode4wcs");
-
-            PreparedStatement requestStatement = connection.prepareStatement("SELECT id FROM championship WHERE name = ?");
+            PreparedStatement requestStatement = TournamentServlet.instantiateSQL().prepareStatement("SELECT id FROM championship WHERE name = ?");
             requestStatement.setString(1, championshipName);
             ResultSet result = requestStatement.executeQuery();
             while (result.next()) {
                 id = result.getInt("id");
             }
-
-            PreparedStatement preparedStatement = connection
+            PreparedStatement preparedStatement = TournamentServlet.instantiateSQL()
                     .prepareStatement("INSERT INTO players_championship VALUES(?, ?, 0, 0)");
             preparedStatement.setInt(1, id);
             preparedStatement.setInt(2, playerId);
             preparedStatement.executeUpdate();
 
-        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
     private void writeMatches(int player1, int player2, int championshipId) throws SQLException {
-
         PreparedStatement preparedStatement = TournamentServlet.instantiateSQL()
                 .prepareStatement("INSERT INTO matches VALUES(null, 0, ?, ?,null, ?)");
         preparedStatement.setInt(1, player1);
         preparedStatement.setInt(2, player2);
         preparedStatement.setInt(3, championshipId);
         preparedStatement.executeUpdate();
-
     }
 
     private int writeTournament(String name, String sport, String type, String mode, int id) throws SQLException {

@@ -10,6 +10,7 @@ import java.io.IOException;
 
 @WebServlet(name = "HomeServlet", urlPatterns = "/home")
 public class HomeServlet extends HttpServlet {
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
@@ -22,7 +23,6 @@ public class HomeServlet extends HttpServlet {
                     boolean isOnline = Boolean.parseBoolean(cookie.getValue());
                     request.getSession().setAttribute("isOnline", isOnline);
                     this.getServletContext().getRequestDispatcher("/home.jsp").forward(request, response);
-
                 }
             }
         } else {

@@ -23,7 +23,7 @@
             <td>${tournament.type}</td>
             <td>${tournament.mode}</td>
             <td>${tournament.players} Joueurs</td>
-            <td><a href="${pageContext.request.contextPath}/tournament?id=${tournament.id}">Consulter</a> </td>
+            <td><a href="${pageContext.request.contextPath}/tournament?id=${tournament.id}">Consulter</a></td>
         </tr>
     </c:forEach>
 </table>

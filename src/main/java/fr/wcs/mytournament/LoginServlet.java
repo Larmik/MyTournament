@@ -1,7 +1,5 @@
 package fr.wcs.mytournament;
 
-import com.mysql.jdbc.Driver;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
@@ -9,23 +7,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.*;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 @WebServlet(name = "LoginServlet", urlPatterns = {"/login"})
 public class LoginServlet extends HttpServlet {
 
-    private String pseudoValue;
-    private boolean isOnline = false;
-
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         try {
-            Class driverClass = Class.forName("com.mysql.jdbc.Driver");
-            Driver driver = (Driver) driverClass.newInstance();
-            DriverManager.registerDriver(driver);
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/myTournament", "root", "jecode4wcs");
-
-            PreparedStatement preparedStatement = connection
+            PreparedStatement preparedStatement = TournamentServlet.instantiateSQL()
                     .prepareStatement("SELECT pseudo, password FROM players");
             ResultSet result = preparedStatement.executeQuery();
             String pseudoValue = request.getParameter("pseudo");
@@ -37,10 +28,10 @@ public class LoginServlet extends HttpServlet {
                     Cookie onlineCookie = new Cookie("onlineCookie", String.valueOf(true));
                     Cookie pseudoCookie = new Cookie("pseudoCookie", pseudoValue);
                     pseudoCookie.setPath("/");
-                    pseudoCookie.setMaxAge(60*60*24*14);
+                    pseudoCookie.setMaxAge(60 * 60 * 24 * 14);
                     response.addCookie(pseudoCookie);
                     onlineCookie.setPath("/");
-                    onlineCookie.setMaxAge(60*60*24*14);
+                    onlineCookie.setMaxAge(60 * 60 * 24 * 14);
                     response.addCookie(onlineCookie);
                     response.sendRedirect("/home");
                     break;
@@ -49,11 +40,7 @@ public class LoginServlet extends HttpServlet {
                     this.getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
                 }
             }
-
-
-
-
-        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
@@ -61,6 +48,4 @@ public class LoginServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
-
-
 }

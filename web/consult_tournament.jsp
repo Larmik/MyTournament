@@ -1,11 +1,4 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: wilder
-  Date: 17/07/18
-  Time: 11:11
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -34,5 +27,13 @@
     </c:forEach>
 </table>
 <h5>Calendrier</h5>
+<c:forEach items="${sessionScope.matches}" var="match">
+    <div>
+            ${match.player1}
+        V.S
+            ${match.player2}
+        <a href="${pageContext.request.contextPath}/match?id=${match.id}">Jouer ce match</a>
+    </div>
+</c:forEach>
 </body>
 </html>

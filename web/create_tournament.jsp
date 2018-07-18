@@ -11,7 +11,7 @@
     <label for="name">Donnez un nom à votre tournoi :</label>
     <input type="text" name="name" id="name"/>
     <c:if test="${not empty requestScope.error}">
-        <p>${error}</p>
+        <script>alert('Veuillez nommer votre tournoi')</script>
     </c:if>
     <fieldset>
         <legend>Choisissez votre sport :</legend>
@@ -38,8 +38,6 @@
             </c:forEach>
         </select>
         <input type="submit" value="Ajouter" onclick="form.action='/addplayer';">
-
-
         <c:forEach items="${sessionScope.playerSelected}" var="selected">
             <p>${selected}</p>
         </c:forEach>

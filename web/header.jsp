@@ -1,18 +1,17 @@
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <h1>My Tournament</h1>
 <nav>
     <ul>
         <li><a href="home">Accueil</a></li>
-            <li><a href="create">Créer un tournoi</a></li>
-            <li><a href="index.jsp">Créer une équipe</a></li>
-            <li><a href="show">Mes tournois</a></li>
+        <li><a href="create">Créer un tournoi</a></li>
+        <li><a href="index.jsp">Créer une équipe</a></li>
+        <li><a href="show">Mes tournois</a></li>
     </ul>
     <c:if test="${cookie.onlineCookie.value.equals('true')}">
         <div>
             <span>Bonjour ${cookie.pseudoCookie.value} !</span>
-            <a href="index.jsp"  onclick="deleteAllCookies()">Déconnexion</a>
+            <a href="index.jsp" onclick="deleteAllCookies()">Déconnexion</a>
         </div>
     </c:if>
 </nav>

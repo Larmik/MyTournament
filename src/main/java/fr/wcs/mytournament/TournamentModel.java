@@ -9,6 +9,7 @@ public class TournamentModel {
     private String mode;
     private int players;
 
+
     public TournamentModel(int id, String name, String sport, String type, String mode, int players) {
         this.id = id;
         this.name = name;

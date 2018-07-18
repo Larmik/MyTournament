@@ -38,8 +38,6 @@
             </c:forEach>
         </select>
         <input type="submit" value="Ajouter" onclick="form.action='/addplayer';">
-
-
         <c:forEach items="${sessionScope.playerSelected}" var="selected">
             <p>${selected}</p>
         </c:forEach>

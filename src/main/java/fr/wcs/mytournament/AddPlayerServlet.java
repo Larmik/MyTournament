@@ -14,6 +14,8 @@ import java.util.List;
 
 @WebServlet(name = "AddPlayerServlet", urlPatterns = "/addplayer")
 public class AddPlayerServlet extends HttpServlet {
+    static List<String> playerSelected = new ArrayList<>();
+    List<String> playerNames = new ArrayList<>();
 
     public static void sqlRequestPlayer(List<String> playerNames, List<String> playerSelected, HttpServletRequest request) {
         try {
@@ -33,8 +35,7 @@ public class AddPlayerServlet extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<String> playerSelected = new ArrayList<>();
-        List<String> playerNames = new ArrayList<>();
+
         String player = request.getParameter("players");
         if (!playerSelected.contains(player)) {
             playerSelected.add(player);

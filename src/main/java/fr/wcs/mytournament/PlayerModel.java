@@ -7,14 +7,34 @@ public class PlayerModel {
     private int points;
     private int wins;
     private int loses;
+    private int winsets;
+    private int losesets;
 
-    public PlayerModel(int position, int id, String pseudo, int points, int wins, int loses) {
+    public PlayerModel(int position, int id, String pseudo, int points, int wins, int loses, int winsets, int losesets) {
         this.position = position;
         this.id = id;
         this.pseudo = pseudo;
         this.points = points;
         this.wins = wins;
         this.loses = loses;
+        this.winsets = winsets;
+        this.losesets = losesets;
+    }
+
+    public int getLosesets() {
+        return losesets;
+    }
+
+    public void setLosesets(int losesets) {
+        this.losesets = losesets;
+    }
+
+    public int getWinsets() {
+        return winsets;
+    }
+
+    public void setWinsets(int winsets) {
+        this.winsets = winsets;
     }
 
     public int getId() {

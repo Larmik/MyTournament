@@ -1,5 +1,7 @@
 package fr.wcs.mytournament;
 
+
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
@@ -50,6 +52,7 @@ public class CreateServlet extends HttpServlet {
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
+                AddPlayerServlet.playerSelected.clear();
                 request.setAttribute("success", "Tournoi créé avec succès !");
                 this.getServletContext().getRequestDispatcher("/home.jsp").forward(request, response);
             }
@@ -106,7 +109,7 @@ public class CreateServlet extends HttpServlet {
                 id = result.getInt("id");
             }
             PreparedStatement preparedStatement = TournamentServlet.instantiateSQL()
-                    .prepareStatement("INSERT INTO players_championship VALUES(?, ?, 0, 0)");
+                    .prepareStatement("INSERT INTO players_championship VALUES(?, ?, 0, 0, 0, 0, 0, 0)");
             preparedStatement.setInt(1, id);
             preparedStatement.setInt(2, playerId);
             preparedStatement.executeUpdate();
@@ -118,7 +121,7 @@ public class CreateServlet extends HttpServlet {
 
     private void writeMatches(int player1, int player2, int championshipId) throws SQLException {
         PreparedStatement preparedStatement = TournamentServlet.instantiateSQL()
-                .prepareStatement("INSERT INTO matches VALUES(null, 0, ?, ?,null, ?)");
+                .prepareStatement("INSERT INTO matches VALUES(null, 0, ?, ?,false,0, 0, ?)");
         preparedStatement.setInt(1, player1);
         preparedStatement.setInt(2, player2);
         preparedStatement.setInt(3, championshipId);

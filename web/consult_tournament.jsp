@@ -15,6 +15,7 @@
         <th>Points</th>
         <th>Victoires</th>
         <th>Défaites</th>
+        <th>Différence</th>
     </tr>
     <c:forEach items="${sessionScope.players}" var="player">
         <tr>
@@ -23,6 +24,7 @@
             <td>${player.points}</td>
             <td>${player.wins}</td>
             <td>${player.loses}</td>
+            <td>${player.winsets - player.losesets}</td>
         </tr>
     </c:forEach>
 </table>
@@ -32,7 +34,15 @@
             ${match.player1}
         V.S
             ${match.player2}
-        <a href="${pageContext.request.contextPath}/match?id=${match.id}">Jouer ce match</a>
+                <c:choose>
+                    <c:when test="${match.hasBeenPlayed}">
+                        ${match.score1} - ${match.score2}
+                    </c:when>
+                    <c:otherwise>
+                        <a href="${pageContext.request.contextPath}/match?id=${match.id}">Jouer ce match</a>
+                    </c:otherwise>
+                </c:choose>
+
     </div>
 </c:forEach>
 </body>

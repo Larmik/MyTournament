@@ -63,27 +63,36 @@ public class TournamentServlet extends HttpServlet {
             String mode = result.getString("mode");
             tournament = new TournamentModel(id, name, sport, type, mode, 0);
         }
-
-        PreparedStatement playerStatement = instantiateSQL().prepareStatement("SELECT players.pseudo, players.id FROM players JOIN players_championship ON players.id=players_championship.id_players WHERE players_championship.id = ?");
+        int position = 1;
+        PreparedStatement playerStatement = instantiateSQL().prepareStatement("SELECT players.pseudo, players.id, pc.points, pc.position, pc.wins, pc.loses, pc.winsets, pc.losesets FROM players JOIN players_championship pc ON players.id=pc.id_players WHERE pc.id = ? ORDER BY pc.points DESC, pc.wins DESC, pc.winsets-pc.losesets DESC");
         playerStatement.setInt(1, id);
         ResultSet playerResult = playerStatement.executeQuery();
         while (playerResult.next()) {
             String pseudo = playerResult.getString("pseudo");
             int playerId = playerResult.getInt("id");
-            playerList.add(new PlayerModel(1, playerId, pseudo, 0, 0, 0));
+            int points = playerResult.getInt("points");
+            int wins = playerResult.getInt("wins");
+            int loses = playerResult.getInt("loses");
+            int winsets = playerResult.getInt("winsets");
+            int losesets = playerResult.getInt("losesets");
+            playerList.add(new PlayerModel(position, playerId, pseudo, points, wins, loses, winsets, losesets));
+            position++;
         }
         return tournament;
     }
 
     private void readMatches(List<MatchModel> matchList, int id) throws SQLException {
-        PreparedStatement requestStatement = instantiateSQL().prepareStatement("SELECT matches.id AS id, p1.pseudo as player1, p2.pseudo as player2 FROM matches INNER JOIN players p1 ON p1.id = matches.id_player1 INNER JOIN players p2 ON p2.id = matches.id_player2 WHERE matches.id_championship = ?");
+        PreparedStatement requestStatement = instantiateSQL().prepareStatement("SELECT matches.id AS id, p1.pseudo as player1, p2.pseudo as player2, hasBeenPlayed, score1, score2 FROM matches INNER JOIN players p1 ON p1.id = matches.id_player1 INNER JOIN players p2 ON p2.id = matches.id_player2 WHERE matches.id_championship = ?");
         requestStatement.setInt(1, id);
         ResultSet requestResult = requestStatement.executeQuery();
         while (requestResult.next()) {
             int matchId = requestResult.getInt("id");
             String pseudo1 = requestResult.getString("player1");
             String pseudo2 = requestResult.getString("player2");
-            matchList.add(new MatchModel(matchId, pseudo1, pseudo2));
+            boolean hasBeenPlayed = requestResult.getBoolean("hasBeenPlayed");
+            int score1 = requestResult.getInt("score1");
+            int score2 = requestResult.getInt("score2");
+            matchList.add(new MatchModel(matchId, pseudo1, pseudo2, hasBeenPlayed, score1, score2));
         }
     }
 

@@ -11,12 +11,17 @@
 <body>
 
 <h1>My Tournament</h1>
-<img src="http://via.placeholder.com/600x400">
-<p>Lorem ipsum dolor amet tumblr lomo synth shoreditch kinfolk.
-</p>
-<a href="${pageContext.request.contextPath}/signin.jsp">Je m'inscris</a>
-<span>ou</span>
-<a href="${pageContext.request.contextPath}/login.jsp">Je me connecte</a>
+<div class="image">
+    <img src="${pageContext.request.contextPath}/Files/1200px-Darts_in_a_dartboard.jpg">
+    <p>La référence de l'organisation de tournois. Par les joueurs. Pour les joueurs</p>
+</div>
+
+
+<div class="connect">
+    <a href="${pageContext.request.contextPath}/signin.jsp">Je m'inscris</a>
+    <span>ou</span>
+    <a href="${pageContext.request.contextPath}/login.jsp">Je me connecte</a>
+</div>
 
 </body>
 </html>

@@ -17,14 +17,14 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             PreparedStatement preparedStatement = TournamentServlet.instantiateSQL()
-                    .prepareStatement("SELECT pseudo, password FROM players");
-            ResultSet result = preparedStatement.executeQuery();
+                    .prepareStatement("SELECT pseudo, password FROM players WHERE " +
+                            "pseudo = ? AND password = ? LIMIT 1");
             String pseudoValue = request.getParameter("pseudo");
             String passwordValue = request.getParameter("password");
-            while (result.next()) {
-                String password = result.getString("password");
-                String pseudo = result.getString("pseudo");
-                if (pseudoValue.contains(pseudo) && passwordValue.contains(password)) {
+            preparedStatement.setString(1, pseudoValue);
+            preparedStatement.setString(2, passwordValue);
+            ResultSet result = preparedStatement.executeQuery();
+            if (result.next()) {
                     Cookie onlineCookie = new Cookie("onlineCookie", String.valueOf(true));
                     Cookie pseudoCookie = new Cookie("pseudoCookie", pseudoValue);
                     pseudoCookie.setPath("/");
@@ -34,11 +34,9 @@ public class LoginServlet extends HttpServlet {
                     onlineCookie.setMaxAge(60 * 60 * 24 * 14);
                     response.addCookie(onlineCookie);
                     response.sendRedirect("/home");
-                    break;
-                } else {
-                    request.setAttribute("error", "Identifiants incorrects !");
-                    this.getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
-                }
+            } else {
+                request.setAttribute("error", "Identifiants incorrects !");
+                this.getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
             }
         } catch (SQLException e) {
             e.printStackTrace();

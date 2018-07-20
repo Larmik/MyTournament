@@ -2,33 +2,61 @@ body {
     background: url(http://localhost:8080/Files/1200px-Darts_in_a_dartboard.jpg) no-repeat;
     background-size: 100%;
     font-family: 'Philosopher';
+
 }
+
 .background_opacity {
     position: fixed;
     z-index: -10;
-    top: 0; left: 0; right: 0; bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     background-color: rgba(255, 255, 255, 0.2);
 }
+
 h1 {
     text-align: center;
     font-size: 5em;
     margin: 15px;
     color: whitesmoke;
 }
+
 .navigation {
-    display : flex;
+    display: flex;
     justify-content: space-around;
     list-style: none;
     color: whitesmoke;
     font-size: 1.5em
 
 }
+
 header {
     background-color: rgba(192, 57, 43, 0.7);
-    border-radius: 0 0 30px 30px;
-    margin: -8px;
-
+    border-radius: 0 0 50px 50px;
+    padding-bottom: 1px;
+    position: relative;
+    top:-8px;
 }
+
 a {
     color: greenyellow;
+}
+
+a:hover {
+    color: whitesmoke;
+}
+
+p {
+    color: whitesmoke;
+    width: 50%;
+    background-color: rgba(0, 0, 0, 0.5);
+    font-size: 1.5em;
+    text-align: center;
+    padding: 5% 2%;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 50px;
+
+
 }

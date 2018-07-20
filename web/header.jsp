@@ -7,7 +7,7 @@
     <h1>My Tournament</h1>
     <c:if test="${cookie.onlineCookie.value.equals('true')}">
         <nav>
-            <ul>
+            <ul class="navigation">
                 <li>Bonjour ${cookie.pseudoCookie.value} !</li>
                 <li><a href="home">Accueil</a></li>
                 <li><a href="create">Créer un tournoi</a></li>

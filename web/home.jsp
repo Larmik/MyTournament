@@ -3,18 +3,20 @@
 <html>
 <head>
     <title>Accueil - My Tournament</title>
+    <link rel="stylesheet" href="CSS/home.css">
 </head>
 <body>
 <jsp:include page="header.jsp"/>
 
-<img src="http://via.placeholder.com/600x400">
-<p>Lorem ipsum dolor amet tumblr lomo synth shoreditch kinfolk, pok pok cornhole taiyaki cold-pressed mlkshk try-hard.
-    DIY normcore raw denim, literally activated charcoal food truck cornhole retro williamsburg franzen photo booth.
-    Cloud bread migas humblebrag photo booth, plaid brooklyn offal narwhal celiac YOLO. Health goth blue bottle hell of
-    tilde 3 wolf moon kitsch, taxidermy twee farm-to-table try-hard. Cloud bread af woke, synth lyft listicle
-    thundercats
-    master cleanse blog unicorn ennui jean shorts beard narwhal. Af tumblr meh glossier health goth stumptown fam.
-</p>
+<div class="contenu">
+    <p>Avec MyTournament, créez facilement le tournoi que vous souhaitez organiser. Invitez vos amis à s'inscrire et
+        ajoutez-lez à votre compétition. Choisissez votre sport et votre type de tournoi, et lancez-vous dans l'aventure ! <br>
+        Enregistrez votre score et consultez à tout moment le classement général ainsi que les résultats passés. Vous pourrez aussi
+        essayer le mode "Equipes" afin de créer vos équipes et de disputer des tournois en groupes. <br>
+        Avec MyTournament, compétition rime toujours avec esprit pratique !
+    </p>
+</div>
+
 
 <c:if test="${not empty requestScope.success}">
     <script>

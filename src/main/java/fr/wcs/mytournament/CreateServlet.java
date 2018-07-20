@@ -65,6 +65,7 @@ public class CreateServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<String> playerNames = new ArrayList<>();
         List<String> playerSelected = new ArrayList<>();
+        AddPlayerServlet.playerSelected.clear();
         boolean isConnected = false;
         Cookie[] cookies = request.getCookies();
 

@@ -22,11 +22,21 @@ a {
     text-decoration: none;
     color: whitesmoke;
 }
+a:hover {
+    text-decoration: underline;
+}
 
 p {
     text-align: center;
     font-size: 1.6em;
     font-weight: bold;
+    color: whitesmoke;
+    border-radius: 15px;
+    background-color: rgba(0,0,0,0.6);
+    width:70%;
+    margin-left:auto;
+    margin-right:auto;
+    padding:15px;
 }
 
 .connect {
@@ -40,12 +50,16 @@ p {
 h1 {
     text-align: center;
     font-size: 5em;
-    margin-top: 15px;
     background-color: rgba(192, 57, 43, 0.7);
-    border-radius: 20px;
+    border-radius: 0 0 30px 30px;
     color: whitesmoke;
+    margin: -8px;
+    padding-bottom:15px;
 }
 
 span {
-    color: black;
+    color: whitesmoke;
+    background-color: rgba(0,0,0,0.6);
+    padding: 5px;
+    border-radius:100%
 }

@@ -2,52 +2,94 @@ body {
     background: url(http://localhost:8080/Files/1200px-Darts_in_a_dartboard.jpg) no-repeat;
     background-size: 100%;
     font-family: 'Philosopher';
+
 }
+
 .background_opacity {
     position: fixed;
     z-index: -10;
-    top: 0; left: 0; right: 0; bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     background-color: rgba(255, 255, 255, 0.2);
 }
+
 h1 {
     text-align: center;
     font-size: 5em;
     margin: 15px;
-
     color: whitesmoke;
 }
-ul {
-    display : flex;
+
+.navigation {
+    display: flex;
     justify-content: space-around;
     list-style: none;
     color: whitesmoke;
     font-size: 1.5em
 
 }
+
 header {
     background-color: rgba(192, 57, 43, 0.7);
-    border-radius: 20px;
-    padding: 10px;
-
+    border-radius: 0 0 50px 50px;
+    padding-bottom: 1px;
+    position: relative;
+    top:-8px;
 }
+
 a {
     color: greenyellow;
 }
+
+a:hover {
+    color: whitesmoke;
+}
+
 .button {
     padding: 5px;
     border-radius: 50px;
-    background-color: greenyellow;
+    background-color: rgba(192,57,43,0.7);
     text-decoration: none;
     color: black;
 }
 fieldset {
+    width:120%;
     background-color: rgba(255,255,255,0.8);
-    width: 50%;
+    margin-bottom: 20px;
+    display:flex;
+    justify-content:space-evenly;
+    align-items: center;
 }
 legend {
-    background-color: rgba(192,57,43,0.7);
+    background-color: rgba(0,0,0,0.7);
     border-radius: 15px;
     font-weight: bold;
     color: whitesmoke;
-    padding:5px
+    padding:5px;
+}
+h3 {
+    font-size: 2em;
+    text-align: center;
+    background-color: rgba(0,0,0,0.6);
+    color:whitesmoke;
+    width:28%;
+    border-radius:15px;
+    margin-left:auto;
+    margin-right:auto;
+}
+.contenu {
+    display: flex;
+    justify-content:space-around;
+}
+.playerList{
+    background-color: rgba(255,255,255,0.8);
+    padding:15px;
+    padding-top:0px;
+    border-radius: 15px;
+    height:100%;
+}
+h4 {
+    text-decoration: underline;
 }

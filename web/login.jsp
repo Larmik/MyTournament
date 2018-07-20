@@ -9,9 +9,9 @@
 <h3>Connexion</h3>
 <form method="post" action="${pageContext.request.contextPath}/login">
     <label for="pseudo_form">Pseudo :</label>
-    <input type="text" id="pseudo_form" name="pseudo" required/>
+    <input type="text" id="pseudo_form" name="pseudo" required/> <br/>
     <label for="password_form">Mot de passe :</label>
-    <input type="password" id="password_form" name="password" required/>
+    <input type="password" id="password_form" name="password" required/><br/>
     <input type="submit" value="Connexion"/>
 </form>
 <c:if test="${not empty requestScope.error}">

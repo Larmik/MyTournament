@@ -1,0 +1,51 @@
+body {
+    background: url(http://localhost:8080/Files/1200px-Darts_in_a_dartboard.jpg) no-repeat;
+    background-size: 100%;
+    font-family: 'Philosopher';
+}
+
+.background_opacity {
+    position: fixed;
+    z-index: -10;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+a {
+    margin: 30px;
+    padding: 15px;
+    border-radius: 50px;
+    background-color: rgb(0, 177, 106);
+    text-decoration: none;
+    color: whitesmoke;
+}
+
+p {
+    text-align: center;
+    font-size: 1.6em;
+    font-weight: bold;
+}
+
+.connect {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: whitesmoke;
+    font-size: 1.5em
+}
+
+h1 {
+    text-align: center;
+    font-size: 5em;
+    margin-top: 15px;
+    background-color: rgba(192, 57, 43, 0.7);
+    border-radius: 20px;
+    color: whitesmoke;
+}
+
+span {
+    color: black;
+}

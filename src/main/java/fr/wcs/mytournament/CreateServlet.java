@@ -54,11 +54,11 @@ public class CreateServlet extends HttpServlet {
                 }
                 AddPlayerServlet.playerSelected.clear();
                 request.setAttribute("success", "Tournoi créé avec succès !");
-                this.getServletContext().getRequestDispatcher("/home.jsp").forward(request, response);
+                this.getServletContext().getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
             }
         } else {
             request.setAttribute("emptyError", "Veuillez choisir au moin deux joueurs");
-            this.getServletContext().getRequestDispatcher("/create_tournament.jsp").forward(request, response);
+            this.getServletContext().getRequestDispatcher("/WEB-INF/create_tournament.jsp").forward(request, response);
         }
     }
 
@@ -78,7 +78,7 @@ public class CreateServlet extends HttpServlet {
         }
         if (isConnected) {
             AddPlayerServlet.sqlRequestPlayer(playerNames, playerSelected, request);
-            this.getServletContext().getRequestDispatcher("/create_tournament.jsp").forward(request, response);
+            this.getServletContext().getRequestDispatcher("/WEB-INF/create_tournament.jsp").forward(request, response);
         } else {
             response.sendRedirect("/");
         }

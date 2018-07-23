@@ -46,6 +46,6 @@ public class ShowServlet extends HttpServlet {
             e.printStackTrace();
         }
         request.getSession().setAttribute("tournamentList", tournamentList);
-        this.getServletContext().getRequestDispatcher("/show_tournaments.jsp").forward(request, response);
+        this.getServletContext().getRequestDispatcher("/WEB-INF/show_tournaments.jsp").forward(request, response);
     }
 }

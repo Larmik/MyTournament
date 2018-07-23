@@ -5,7 +5,7 @@
     <title>Se connecter - My Tournament</title>
 </head>
 <body>
-<jsp:include page="index.jsp"/>
+<jsp:include page="../index.jsp"/>
 <h3>Connexion</h3>
 <form method="post" action="${pageContext.request.contextPath}/login">
     <label for="pseudo_form">Pseudo :</label>

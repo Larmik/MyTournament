@@ -4,7 +4,7 @@
     <title>${sessionScope.match.player1} VS ${sessionScope.match.player2} - MyTournament</title>
 </head>
 <body>
-<jsp:include page="header.jsp"/>
+<jsp:include page="/WEB-INF/header.jsp"/>
 <h3>Match du tournoi ${sessionScope.tournament.name}</h3>
 <h4>${sessionScope.match.player1} VS ${sessionScope.match.player2}</h4>
 <div class="container" style="display: flex">

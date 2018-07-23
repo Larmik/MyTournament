@@ -15,9 +15,9 @@
 <p>La référence de l'organisation de tournois. Par les joueurs. Pour les joueurs.</p>
 <div class="background_opacity"></div>
 <div class="connect">
-    <a href="${pageContext.request.contextPath}/signin.jsp">Je m'inscris</a>
+    <a href="${pageContext.request.contextPath}/signin">Je m'inscris</a>
     <span>ou</span>
-    <a href="${pageContext.request.contextPath}/login.jsp">Je me connecte</a>
+    <a href="${pageContext.request.contextPath}/login">Je me connecte</a>
 </div>
 </body>
 </html>

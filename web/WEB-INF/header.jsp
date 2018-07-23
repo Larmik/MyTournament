@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <head>
-    <link rel="stylesheet" href="CSS/header.css" />
+    <link rel="stylesheet" href="../CSS/header.css" />
 </head>
 <header>
     <h1>My Tournament</h1>
@@ -11,9 +11,9 @@
                 <li>Bonjour ${cookie.pseudoCookie.value} !</li>
                 <li><a href="home">Accueil</a></li>
                 <li><a href="create">Créer un tournoi</a></li>
-                <li><a href="index.jsp">Créer une équipe</a></li>
+                <li><a href="create_team">Créer une équipe</a></li>
                 <li><a href="show">Mes tournois</a></li>
-                <li><a href="index.jsp" onclick="deleteAllCookies()">Déconnexion</a></li>
+                <li><a href="../index.jsp" onclick="deleteAllCookies()">Déconnexion</a></li>
             </ul>
         </nav>
     </c:if>

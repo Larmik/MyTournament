@@ -22,7 +22,7 @@ public class HomeServlet extends HttpServlet {
                 if (cookie.getName().equals("onlineCookie")) {
                     boolean isOnline = Boolean.parseBoolean(cookie.getValue());
                     request.getSession().setAttribute("isOnline", isOnline);
-                    this.getServletContext().getRequestDispatcher("/home.jsp").forward(request, response);
+                    this.getServletContext().getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
                 }
             }
         } else {

@@ -47,7 +47,7 @@ public class TournamentServlet extends HttpServlet {
             request.getSession().setAttribute("tournament", tournamentModel);
             request.getSession().setAttribute("players", playerList);
             request.getSession().setAttribute("matches", matchList);
-            this.getServletContext().getRequestDispatcher("/consult_tournament.jsp").forward(request, response);
+            this.getServletContext().getRequestDispatcher("/WEB-INF/consult_tournament.jsp").forward(request, response);
         }
     }
 

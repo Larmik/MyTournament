@@ -3,10 +3,11 @@
 <html>
 <head>
     <title>Mes tournois - My Tournament</title>
+    <link rel="stylesheet" href="../CSS/show.css"/>
     <meta charset="UTF-8">
 </head>
 <body>
-<jsp:include page="header.jsp"/>
+<jsp:include page="/WEB-INF/header.jsp"/>
 <h3>Mes tournois</h3>
 <table>
     <tr>

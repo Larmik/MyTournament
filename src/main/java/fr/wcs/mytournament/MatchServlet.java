@@ -44,7 +44,7 @@ public class MatchServlet extends HttpServlet {
                 loseUpdateStatement.setInt(1, wins1);
             } else {
                 request.setAttribute("incompleteError", "Le match doit se finir par deux manches gagnantes");
-                this.getServletContext().getRequestDispatcher("/match.jsp").forward(request, response);
+                this.getServletContext().getRequestDispatcher("/WEB-INF/match.jsp").forward(request, response);
             }
             winUpdateStatement.executeUpdate();
             loseUpdateStatement.executeUpdate();
@@ -68,7 +68,7 @@ public class MatchServlet extends HttpServlet {
                 id2 = resultSet.getInt("id_player2");
             }
             request.getSession().setAttribute("match", matchModel);
-            this.getServletContext().getRequestDispatcher("/match.jsp").forward(request, response);
+            this.getServletContext().getRequestDispatcher("/WEB-INF/match.jsp").forward(request, response);
         } catch (SQLException e) {
             e.printStackTrace();
         }

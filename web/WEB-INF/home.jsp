@@ -3,10 +3,10 @@
 <html>
 <head>
     <title>Accueil - My Tournament</title>
-    <link rel="stylesheet" href="CSS/home.css">
+    <link rel="stylesheet" href="../CSS/home.css">
 </head>
 <body>
-<jsp:include page="header.jsp"/>
+<jsp:include page="/WEB-INF/header.jsp"/>
 
 <div class="contenu">
     <p>Avec MyTournament, créez facilement le tournoi que vous souhaitez organiser. Invitez vos amis à s'inscrire et

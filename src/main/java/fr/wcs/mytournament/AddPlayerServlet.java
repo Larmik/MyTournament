@@ -42,7 +42,7 @@ public class AddPlayerServlet extends HttpServlet {
         }
         sqlRequestPlayer(playerNames, playerSelected, request);
         request.getSession().setAttribute("playerSelected", playerSelected);
-        this.getServletContext().getRequestDispatcher("/create_tournament.jsp").forward(request, response);
+        this.getServletContext().getRequestDispatcher("/WEB-INF/create_tournament.jsp").forward(request, response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

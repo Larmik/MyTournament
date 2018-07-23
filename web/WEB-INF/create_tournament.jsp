@@ -3,10 +3,10 @@
 <html>
 <head>
     <title>Créer un tournoi - My Tournament</title>
-    <link rel="stylesheet" href="CSS/create.css">
+    <link rel="stylesheet" href="../CSS/create.css">
 </head>
 <body>
-<jsp:include page="header.jsp"/>
+<jsp:include page="/WEB-INF/header.jsp"/>
 <h3>Créer un tournoi</h3>
 <div class="contenu">
     <form method="post" action="${pageContext.request.contextPath}/create">

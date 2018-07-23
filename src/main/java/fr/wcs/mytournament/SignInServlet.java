@@ -21,7 +21,7 @@ public class SignInServlet extends HttpServlet {
         if (password.equals(passwordConfirm)) {
             if (password.length() < 6) {
                 request.setAttribute("shortError", "Le mot de passe est trop court.");
-                this.getServletContext().getRequestDispatcher("/signin.jsp").forward(request, response);
+                this.getServletContext().getRequestDispatcher("/WEB-INF/signin.jsp").forward(request, response);
             } else {
                 try {
                     signIn(pseudo, email, password);
@@ -38,11 +38,12 @@ public class SignInServlet extends HttpServlet {
             }
         } else {
             request.setAttribute("noMatchError", "Mots de passes différents.");
-            this.getServletContext().getRequestDispatcher("/signin.jsp").forward(request, response);
+            this.getServletContext().getRequestDispatcher("/WEB-INF/signin.jsp").forward(request, response);
         }
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        this.getServletContext().getRequestDispatcher("/WEB-INF/signin.jsp").forward(request,response);
 
     }
 

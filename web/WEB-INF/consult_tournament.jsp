@@ -3,11 +3,11 @@
 <html>
 <head>
     <title>${sessionScope.tournament.name} - My Tournament</title>
+    <link rel="stylesheet" href="../CSS/tournament.css"/>
 </head>
 <body>
-<jsp:include page="header.jsp"/>
+<jsp:include page="/WEB-INF/header.jsp"/>
 <h3>${sessionScope.tournament.name}</h3>
-<h5>Classement général</h5>
 <table>
     <tr>
         <th>Classement</th>
@@ -28,22 +28,32 @@
         </tr>
     </c:forEach>
 </table>
-<h5>Calendrier</h5>
-<c:forEach items="${sessionScope.matches}" var="match">
-    <div>
-            ${match.player1}
-        V.S
-            ${match.player2}
-                <c:choose>
-                    <c:when test="${match.hasBeenPlayed}">
-                        ${match.score1} - ${match.score2}
-                    </c:when>
-                    <c:otherwise>
-                        <a href="${pageContext.request.contextPath}/match?id=${match.id}">Jouer ce match</a>
-                    </c:otherwise>
-                </c:choose>
+<h5>Résultats</h5>
+    <c:forEach items="${sessionScope.matches}" var="match">
+        <c:if test="${match.hasBeenPlayed}">
+            <div class="matches">
+                    ${match.player1}   ${match.score1} - ${match.score2}  ${match.player2}
+            </div>
+        </c:if>
+    </c:forEach>
 
-    </div>
+
+
+<h5>Matches à venir</h5>
+<c:forEach items="${sessionScope.matches}" var="match">
+    <c:if test="${not match.hasBeenPlayed}">
+        <div class="matches" >
+            <div class="details">
+                <p>${match.player1} VS ${match.player2}</p>
+                <a href="${pageContext.request.contextPath}/match?id=${match.id}">Jouer ce match</a>
+            </div>
+        </div>
+
+    </c:if>
 </c:forEach>
+
+
+
+
 </body>
 </html>

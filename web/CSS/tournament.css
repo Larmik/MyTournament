@@ -1,0 +1,66 @@
+table {
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.7);
+    font-weight: bold;
+    border-collapse: collapse;
+
+}
+
+th {
+    border: 5px black solid;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: whitesmoke;
+    font-size: 1.3em
+}
+td {
+    padding: 1%;
+    border: 2px black solid;
+}
+h3 {
+    font-size: 2em;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: whitesmoke;
+    width: 28%;
+    border-radius: 15px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.matches {
+    display: inline-flex;
+    border : 1px black solid;
+    padding : 10px;
+    background-color: rgba(255,255,255,0.7);
+    margin-bottom: 10px;
+    width:14%;
+    font-weight:bold;
+    margin:auto;
+    justify-content: center;
+}
+h5 {
+    font-size: 1.3em;
+    text-align: center;
+    background-color: whitesmoke;
+    border : 2px black solid;
+    color: black;
+    width: 20%;
+    border-radius: 15px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.matches a {
+    color:red;
+    font-weight:bold;
+}
+.matches p {
+    font-weight:bold;
+}
+.matches a:hover {
+    color:green;
+}
+.details {
+    text-align: center;
+}

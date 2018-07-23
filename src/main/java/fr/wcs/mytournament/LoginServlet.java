@@ -36,7 +36,7 @@ public class LoginServlet extends HttpServlet {
                     response.sendRedirect("/home");
             } else {
                 request.setAttribute("error", "Identifiants incorrects !");
-                this.getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
+                this.getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -44,6 +44,6 @@ public class LoginServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        this.getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request,response);
     }
 }

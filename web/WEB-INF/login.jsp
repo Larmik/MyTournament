@@ -3,6 +3,7 @@
 <html>
 <head>
     <title>Se connecter - My Tournament</title>
+    <link rel="stylesheet" href="../CSS/loginsignin.css">
 </head>
 <body>
 <jsp:include page="../index.jsp"/>
@@ -12,7 +13,7 @@
     <input type="text" id="pseudo_form" name="pseudo" required/> <br/>
     <label for="password_form">Mot de passe :</label>
     <input type="password" id="password_form" name="password" required/><br/>
-    <input type="submit" value="Connexion"/>
+    <input class="button" type="submit" value="Connexion"/>
 </form>
 <c:if test="${not empty requestScope.error}">
     <script> alert('Identifiants incorrects.')</script>

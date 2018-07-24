@@ -32,7 +32,7 @@ public class CreateServlet extends HttpServlet {
         if (pseudoSelected != null && pseudoSelected.size() > 1) {
             if (name == null || name.isEmpty()) {
                 request.setAttribute("error", "Veuillez nommer votre tournoi !");
-                this.getServletContext().getRequestDispatcher("/create_tournament.jsp").forward(request, response);
+                this.getServletContext().getRequestDispatcher("/WEB-INF/create_tournament.jsp").forward(request, response);
             } else {
                 try {
                     id = writeTournament(name, sport, type, mode, id);

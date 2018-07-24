@@ -1,55 +1,65 @@
 table {
     margin-left: auto;
     margin-right: auto;
-    width: 80%;
+    width: 70%;
     text-align: center;
-    background-color: rgba(255, 255, 255, 0.7);
+    background-color: whitesmoke;
     font-weight: bold;
     border-collapse: collapse;
+    border-radius: 15px;
+    box-shadow: 5px 5px 5px;
 
 }
 
 th {
     border: 5px black solid;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: black;
     color: whitesmoke;
     font-size: 1.3em
 }
 td {
-    padding: 1%;
-    border: 2px black solid;
+    padding: 1.5%;
+    border-top: 2px black solid;
 }
+.middle {
+    border-right: 2px black solid;
+    border-left:2px black solid;
+}
+
 h3 {
     font-size: 2em;
     text-align: center;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: black;
     color: whitesmoke;
     width: 28%;
     border-radius: 15px;
     margin-left: auto;
     margin-right: auto;
+    box-shadow: 5px 5px 5px whitesmoke;
 }
 .matches {
     display: inline-flex;
     border : 1px black solid;
     padding : 10px;
-    background-color: rgba(255,255,255,0.7);
+    background-color: whitesmoke;
     margin-bottom: 10px;
     width:14%;
     font-weight:bold;
-    margin:auto;
     justify-content: center;
+    border-radius:15px;
+    box-shadow: 5px 5px 5px black;
 }
 h5 {
     font-size: 1.3em;
     text-align: center;
-    background-color: whitesmoke;
+    background-color: black;
     border : 2px black solid;
-    color: black;
+    color: whitesmoke;
     width: 20%;
     border-radius: 15px;
     margin-left: auto;
     margin-right: auto;
+    box-shadow: 5px 5px 5px whitesmoke;
 }
 .matches a {
     color:red;

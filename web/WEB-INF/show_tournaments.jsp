@@ -16,6 +16,7 @@
         <th>Type de tournoi</th>
         <th>Mode de jeu</th>
         <th>Participants</th>
+        <th class="corner"></th>
     </tr>
     <c:forEach items="${sessionScope.tournamentList}" var="tournament">
         <tr>

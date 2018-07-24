@@ -1,12 +1,13 @@
 h3 {
     font-size: 2em;
     text-align: center;
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: black;
     color: whitesmoke;
     width: 28%;
     border-radius: 15px;
     margin-left: auto;
     margin-right: auto;
+    box-shadow: 5px 5px 5px whitesmoke;
 }
 
 table {
@@ -14,21 +15,23 @@ table {
     margin-right: auto;
     width: 80%;
     text-align: center;
-    background-color: rgba(255, 255, 255, 0.7);
+    background-color: whitesmoke;
     font-weight: bold;
     border-collapse: collapse;
-
+    border-radius: 15px;
+    box-shadow: 10px 10px 5px;
 }
 
 th {
-    border-bottom: 5px black solid;
-    background-color: rgba(0, 0, 0, 0.7);
+    border: 3px black solid;
+    background-color: black;
     color: whitesmoke;
-    font-size: 1.3em
+    font-size: 1.3em;
+   
 }
 td {
     padding: 2%;
-    border-bottom: 2px black solid;
+    border-top: 2px black solid;
 }
 table a {
     color: red;
@@ -36,5 +39,8 @@ table a {
 
 table a:hover {
     color: green;
+}
+.corner {
+    
 }
 

@@ -1,0 +1,38 @@
+h3 {
+    text-align: center;
+    background-color:whitesmoke;
+    width:20%;
+    margin-left:auto;
+    margin-right:auto;
+    border:2px black solid;
+    font-size:1.5em;
+    border-radius:15px;
+    font-weight:bold;
+     box-shadow: 5px 5px 5px black;
+
+}
+form {
+    background-color: white;
+    text-align: center;
+    padding:20px;
+    width:40%;
+    margin-left:auto;
+    margin-right:auto;
+    border-radius:15px;
+    border:  2px black solid;
+    box-shadow: 5px 5px 5px black;
+}
+label, input {
+    margin-bottom:15px;
+}
+.button {
+    margin-top:10px;
+    margin-bottom:0px;
+    padding:10px;
+    width:100%;
+    border-radius:15px;
+    font-size:1.3em;
+    background-color: silver;
+    box-shadow: 5px 5px 5px grey;
+    color: black;
+}

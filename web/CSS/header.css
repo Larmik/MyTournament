@@ -23,8 +23,10 @@ h1 {
 }
 
 .navigation {
+   position: relative;
+    right:20px;
     display: flex;
-    justify-content: space-around;
+    justify-content:space-around;
     list-style: none;
     color: whitesmoke;
     font-size: 1.5em
@@ -32,12 +34,13 @@ h1 {
 }
 
 header {
-    background-color: rgba(192, 57, 43, 0.7);
-    border-radius: 0 0 50px 50px;
+    background-color: rgba(192, 57, 43, 0.9);
+    border-radius: 0 0 20px 20px;
     padding-bottom: 1px;
     position: relative;
     top:-15px;
-    width:100%
+    width:100%;
+    box-shadow: 15px 15px 5px rgba(0,0,0,0.5);
 }
 
 a {

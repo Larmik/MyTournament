@@ -3,6 +3,7 @@
 <html>
 <head>
     <title>S'inscrire - My Tournament</title>
+    <link rel="stylesheet" href="../CSS/loginsignin.css">
 </head>
 <body>
 <jsp:include page="../index.jsp"/>
@@ -16,7 +17,7 @@
     <input type="password" id="password_form" name="password" required/><br/>
     <label for="password_confirm_form">Confirmez votre mot de passe :</label>
     <input type="password" id="password_confirm_form" name="password_confirm" required/> <br/>
-    <input type="submit" value="Inscription"/>
+    <input class="button" type="submit" value="Inscription"/>
 </form>
 
 <c:if test="${not empty requestScope.noMatchError}">

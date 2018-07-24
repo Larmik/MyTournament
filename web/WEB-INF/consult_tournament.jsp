@@ -20,10 +20,10 @@
     <c:forEach items="${sessionScope.players}" var="player">
         <tr>
             <td>${player.position}</td>
-            <td>${player.pseudo}</td>
-            <td>${player.points}</td>
-            <td>${player.wins}</td>
-            <td>${player.loses}</td>
+            <td class="middle">${player.pseudo}</td>
+            <td class="middle">${player.points}</td>
+            <td class="middle">${player.wins}</td>
+            <td class="middle">${player.loses}</td>
             <td>${player.winsets - player.losesets}</td>
         </tr>
     </c:forEach>

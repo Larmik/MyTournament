@@ -19,41 +19,51 @@ public class MatchServlet extends HttpServlet {
     private int matchId;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int wins1 = Integer.parseInt(request.getParameter("winone"));
-        int wins2 = Integer.parseInt(request.getParameter("wintwo"));
-        try {
-            PreparedStatement winUpdateStatement = TournamentServlet.instantiateSQL().prepareStatement("UPDATE players_championship SET points = points + 3, wins = wins + 1, winsets = winsets + ?, losesets = losesets + ? WHERE id_players = ? ");
-            PreparedStatement loseUpdateStatement = TournamentServlet.instantiateSQL().prepareStatement("UPDATE players_championship SET loses = loses + 1, winsets = winsets + ?, losesets = losesets + ? WHERE id_players = ?");
-            PreparedStatement playedStatement = TournamentServlet.instantiateSQL().prepareStatement("UPDATE matches SET hasBeenPlayed = true, score1 = ?, score2 = ? WHERE id = ?");
-            playedStatement.setInt(1, wins1);
-            playedStatement.setInt(2, wins2);
-            playedStatement.setInt(3, matchId);
-            if (wins1 == 2) {
-                winUpdateStatement.setInt(3, id1);
-                winUpdateStatement.setInt(2, wins2);
-                winUpdateStatement.setInt(1, wins1);
-                loseUpdateStatement.setInt(3, id2);
-                loseUpdateStatement.setInt(2, wins1);
-                loseUpdateStatement.setInt(1, wins2);
-            } else if (wins2 == 2) {
-                winUpdateStatement.setInt(3, id2);
-                winUpdateStatement.setInt(2, wins1);
-                winUpdateStatement.setInt(1, wins2);
-                loseUpdateStatement.setInt(3, id1);
-                loseUpdateStatement.setInt(2, wins2);
-                loseUpdateStatement.setInt(1, wins1);
-            } else {
-                request.setAttribute("incompleteError", "Le match doit se finir par deux manches gagnantes");
-                this.getServletContext().getRequestDispatcher("/WEB-INF/match.jsp").forward(request, response);
+        if (request.getParameter("winone").contains("Manches") || request.getParameter("winone").contains("Manches")) {
+            request.setAttribute("invalidError", "Veuillez entrer un score valide");
+            this.getServletContext().getRequestDispatcher("/WEB-INF/match.jsp").forward(request, response);
+        } else {
+            int wins1 = Integer.parseInt(request.getParameter("winone"));
+            int wins2 = Integer.parseInt(request.getParameter("wintwo"));
+            try {
+                PreparedStatement winUpdateStatement = TournamentServlet.instantiateSQL().prepareStatement("UPDATE players_championship SET points = points + 3, wins = wins + 1, winsets = winsets + ?, losesets = losesets + ? WHERE id_players = ? ");
+                PreparedStatement loseUpdateStatement = TournamentServlet.instantiateSQL().prepareStatement("UPDATE players_championship SET loses = loses + 1, winsets = winsets + ?, losesets = losesets + ? WHERE id_players = ?");
+                PreparedStatement playedStatement = TournamentServlet.instantiateSQL().prepareStatement("UPDATE matches SET hasBeenPlayed = true, score1 = ?, score2 = ? WHERE id = ?");
+                playedStatement.setInt(1, wins1);
+                playedStatement.setInt(2, wins2);
+                playedStatement.setInt(3, matchId);
+                if (wins1 == 2 && wins2 == 2) {
+                    request.setAttribute("drawError", "Impossible de terminer sur une égalité");
+                    this.getServletContext().getRequestDispatcher("/WEB-INF/match.jsp").forward(request, response);
+                } else  if (wins1 == 2) {
+                    winUpdateStatement.setInt(3, id1);
+                    winUpdateStatement.setInt(2, wins2);
+                    winUpdateStatement.setInt(1, wins1);
+                    loseUpdateStatement.setInt(3, id2);
+                    loseUpdateStatement.setInt(2, wins1);
+                    loseUpdateStatement.setInt(1, wins2);
+                } else if (wins2 == 2) {
+                    winUpdateStatement.setInt(3, id2);
+                    winUpdateStatement.setInt(2, wins1);
+                    winUpdateStatement.setInt(1, wins2);
+                    loseUpdateStatement.setInt(3, id1);
+                    loseUpdateStatement.setInt(2, wins2);
+                    loseUpdateStatement.setInt(1, wins1);
+                } else {
+                    request.setAttribute("incompleteError", "Le match doit se finir par deux manches gagnantes");
+                    this.getServletContext().getRequestDispatcher("/WEB-INF/match.jsp").forward(request, response);
+                }
+
+                winUpdateStatement.executeUpdate();
+                loseUpdateStatement.executeUpdate();
+                playedStatement.executeUpdate();
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
-            winUpdateStatement.executeUpdate();
-            loseUpdateStatement.executeUpdate();
-            playedStatement.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
+            TournamentModel model = (TournamentModel) request.getSession().getAttribute("tournament");
+            response.sendRedirect("/tournament?id=" + model.getId());
         }
-        TournamentModel model = (TournamentModel) request.getSession().getAttribute("tournament");
-        response.sendRedirect("/tournament?id=" + model.getId());
+
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -15,17 +15,21 @@ import java.util.List;
 @WebServlet(name = "TournamentServlet", urlPatterns = "/tournament")
 public class TournamentServlet extends HttpServlet {
 
-    static Connection instantiateSQL() {
-        try {
-            Class driverClass = Class.forName("com.mysql.jdbc.Driver");
-            Driver driver = (Driver) driverClass.newInstance();
-            DriverManager.registerDriver(driver);
-            return DriverManager.getConnection("jdbc:mysql://localhost:3306/myTournament", "root", "jecode4wcs");
+    private static Connection sConnection = null;
 
-        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | SQLException e) {
-            e.printStackTrace();
+    static Connection instantiateSQL() {
+        if (sConnection == null) {
+            try {
+                Class driverClass = Class.forName("com.mysql.jdbc.Driver");
+                Driver driver = (Driver) driverClass.newInstance();
+                DriverManager.registerDriver(driver);
+                sConnection = DriverManager.getConnection("jdbc:mysql://localhost:3306/myTournament", "root", "jecode4wcs");
+
+            } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | SQLException e) {
+                e.printStackTrace();
+            }
         }
-        return null;
+        return sConnection;
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

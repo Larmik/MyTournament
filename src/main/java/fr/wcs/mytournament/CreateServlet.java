@@ -56,7 +56,7 @@ public class CreateServlet extends HttpServlet {
                 response.sendRedirect("/show");
             }
         } else {
-            request.setAttribute("emptyError", "Veuillez choisir au moin deux joueurs");
+            request.setAttribute("emptyError", "Veuillez choisir au moins deux joueurs");
             this.getServletContext().getRequestDispatcher("/WEB-INF/create_tournament.jsp").forward(request, response);
         }
     }

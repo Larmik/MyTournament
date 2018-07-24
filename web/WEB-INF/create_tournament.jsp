@@ -37,16 +37,16 @@
             <label for="champion">Championnat</label>
             <input type="radio" name="type" value="Championnat" id="champion" checked>
             <label for="poules">Poules avec élimination directe</label>
-            <input type="radio" name="type" value="Poules/Elimination" id="poules">
+            <input type="radio" name="type" value="Poules/Elimination" id="poules" disabled>
             <label for="final">Elimination directe</label>
-            <input type="radio" name="type" value="Elimination" id="final">
+            <input type="radio" name="type" value="Elimination" id="final" disabled>
         </fieldset>
         <fieldset>
             <legend>Choisissez votre mode :</legend>
             <label for="indiv">Individuel</label>
             <input type="radio" name="mode" value="Individuel" id="indiv" checked>
             <label for="team">Par équipes</label>
-            <input type="radio" name="mode" value="Par équipes" id="team">
+            <input type="radio" name="mode" value="Par équipes" id="team" disabled>
         </fieldset>
         <fieldset>
             <legend>Donnez un nom à votre tournoi :</legend>

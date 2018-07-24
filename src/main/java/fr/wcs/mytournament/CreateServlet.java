@@ -53,8 +53,7 @@ public class CreateServlet extends HttpServlet {
                     e.printStackTrace();
                 }
                 AddPlayerServlet.playerSelected.clear();
-                request.setAttribute("success", "Tournoi créé avec succès !");
-                this.getServletContext().getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
+                response.sendRedirect("/show");
             }
         } else {
             request.setAttribute("emptyError", "Veuillez choisir au moin deux joueurs");

@@ -16,12 +16,5 @@
         Avec MyTournament, compétition rime toujours avec esprit pratique !
     </p>
 </div>
-
-
-<c:if test="${not empty requestScope.success}">
-    <script>
-        alert("${success}");
-    </script>
-</c:if>
 </body>
 </html>

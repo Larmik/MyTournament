@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -17,7 +18,8 @@ public class AddPlayerServlet extends HttpServlet {
     static List<String> playerSelected = new ArrayList<>();
     List<String> playerNames = new ArrayList<>();
 
-    public static void sqlRequestPlayer(List<String> playerNames, List<String> playerSelected, HttpServletRequest request) {
+    public static void sqlRequestPlayer(List<String> playerNames, List<String> playerSelected, HttpServletRequest request) throws UnsupportedEncodingException {
+
         try {
             PreparedStatement preparedStatement = TournamentServlet.instantiateSQL()
                     .prepareStatement("SELECT pseudo FROM players");
@@ -35,7 +37,7 @@ public class AddPlayerServlet extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        request.setCharacterEncoding("UTF-8");
         String player = request.getParameter("players");
         if (!playerSelected.contains(player)) {
             playerSelected.add(player);

@@ -61,7 +61,7 @@ public class MatchServlet extends HttpServlet {
                 e.printStackTrace();
             }
             TournamentModel model = (TournamentModel) request.getSession().getAttribute("tournament");
-            response.sendRedirect("/tournament?id=" + model.getId());
+            response.sendRedirect(request.getContextPath() + "/tournament?id=" + model.getId());
         }
 
     }

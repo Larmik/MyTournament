@@ -7,7 +7,7 @@
 <html>
 <head>
     <title>My Tournament</title>
-    <link rel="stylesheet" href="CSS/index.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/index.css">
 </head>
 <body>
 

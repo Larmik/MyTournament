@@ -1,0 +1,72 @@
+.button {
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 15px;
+    background-color: silver;
+    text-decoration: none;
+    color: black;
+    box-shadow: 5px 5px 5px grey;
+    font-weight:bold;
+   
+}
+fieldset {
+    width:120%;
+    background-color: white;
+    margin-bottom: 20px;
+    display:flex;
+    justify-content:space-evenly;
+    align-items: center;
+    padding : 10px;
+    border-radius : 15px;
+    box-shadow: 5px 5px 5px black;
+}
+legend {
+    background-color: rgb(192,57,43);
+    border-radius: 15px;
+    font-weight: bold;
+    color: whitesmoke;
+    padding:5px;
+    box-shadow: 5px 5px 5px black;
+}
+h3 {
+    font-size: 2em;
+    text-align: center;
+    background-color: black;
+    color:whitesmoke;
+    width:28%;
+    border-radius:15px;
+    margin-left:auto;
+    margin-right:auto;
+    box-shadow: 5px 5px 5px whitesmoke;
+}
+.contenu {
+    display: flex;
+    justify-content:space-around;
+}
+.playerList{
+    background-color: whitesmoke;
+    padding:15px;
+    padding-top:0px;
+    border-radius: 15px;
+    height:100%;
+    width:20%;
+    text-align: center;
+    box-shadow: 5px 5px 5px black;
+}
+h4 {
+    text-decoration: underline;
+}
+select {
+    background-color: white;
+    border-radius: 10px;
+    padding : 5px;
+    padding-left:20px;
+    padding-right : 20px;
+    font-size: 1.2em;
+    font-weight: bold;
+    width:50%
+}
+ul {
+    list-style:disclosure-closed;
+}

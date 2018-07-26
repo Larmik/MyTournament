@@ -1,0 +1,71 @@
+body {
+    background: url(http://localhost:8080/Files/1200px-Darts_in_a_dartboard.jpg) no-repeat;
+    background-size: 100%;
+    font-family: 'Philosopher';
+}
+
+.background_opacity {
+    position: fixed;
+    z-index: -10;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+a {
+    margin: 30px;
+    padding: 15px;
+    border-radius: 50px;
+    background-color: rgb(192,57,43);
+    box-shadow: 5px 5px 5px black;
+    text-decoration: none;
+    color: whitesmoke;
+}
+a:hover {
+    text-decoration: underline;
+}
+
+p {
+    text-align: center;
+    font-size: 1.6em;
+    font-weight: bold;
+    color: whitesmoke;
+    border-radius: 15px;
+    box-shadow: 5px 5px 5px whitesmoke;
+    background-color: black;
+    width:70%;
+    margin-left:auto;
+    margin-right:auto;
+    padding:15px;
+}
+
+.connect {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: whitesmoke;
+    font-size: 1.5em
+}
+
+h1 {
+    text-align: center;
+    font-size: 5em;
+    background-color: rgba(192, 57, 43, 0.9);
+    border-radius: 0 0 30px 30px;
+    color: whitesmoke;
+    margin: -8px;
+    padding-bottom:15px;
+    box-shadow: 15px 15px 5px rgba(0,0,0,0.5);
+}
+
+span {
+    color: whitesmoke;
+    background-color: green;
+    box-shadow: 5px 5px 5px black;
+    padding: 5px;
+    padding-left:10px;
+    padding-right:10px;
+    border-radius:40%;
+}

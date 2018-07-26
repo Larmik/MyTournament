@@ -20,7 +20,7 @@
                     <option>${player}</option>
                 </c:forEach>
             </select>
-            <input type="submit" value="Ajouter" onclick="form.action='/addplayer';" class="button">
+            <input type="submit" value="Ajouter" name="addplayer" class="button">
 
         </fieldset>
         <fieldset>
@@ -52,7 +52,7 @@
             <legend>Donnez un nom à votre tournoi :</legend>
             <label for="name">Nom :</label>
             <input type="text" name="name" id="name"/>
-            <input type="submit" value="C'est parti !" class="button"/>
+            <input type="submit" value="C'est parti !" name="create" class="button"/>
         </fieldset>
     </form>
     <div class="playerList">

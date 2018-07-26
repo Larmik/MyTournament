@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="0d73f5d6-7114-4604-8302-4bbdc1cf78f3" name="MyTournament" url="http://vps559438.ovh.net">
+        <fileTransfer host="vps559438.ovh.net" port="22" rootFolder="/var/www/mytournament" accessType="SFTP">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

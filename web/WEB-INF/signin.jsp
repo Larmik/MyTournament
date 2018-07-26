@@ -3,7 +3,7 @@
 <html>
 <head>
     <title>S'inscrire - My Tournament</title>
-    <link rel="stylesheet" href="../CSS/loginsignin.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/loginsignin.css">
 </head>
 <body>
 <jsp:include page="../index.jsp"/>

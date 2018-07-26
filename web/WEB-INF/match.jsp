@@ -3,7 +3,7 @@
 <html>
 <head>
     <title>${sessionScope.match.player1} VS ${sessionScope.match.player2} - MyTournament</title>
-    <link rel="stylesheet" href="../CSS/match.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/match.css">
 </head>
 <body>
 <jsp:include page="/WEB-INF/header.jsp"/>

@@ -3,7 +3,7 @@
 <html>
 <head>
     <title>Créer un tournoi - My Tournament</title>
-    <link rel="stylesheet" href="../CSS/create.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/create.css">
 </head>
 <body>
 <jsp:include page="/WEB-INF/header.jsp"/>

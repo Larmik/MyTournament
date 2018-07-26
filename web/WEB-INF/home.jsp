@@ -3,7 +3,7 @@
 <html>
 <head>
     <title>Accueil - My Tournament</title>
-    <link rel="stylesheet" href="../CSS/home.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/home.css">
 </head>
 <body>
 <jsp:include page="/WEB-INF/header.jsp"/>

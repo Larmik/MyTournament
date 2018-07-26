@@ -3,7 +3,7 @@
 <html>
 <head>
     <title>Mes tournois - My Tournament</title>
-    <link rel="stylesheet" href="../CSS/show.css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/show.css"/>
     <meta charset="UTF-8">
 </head>
 <body>

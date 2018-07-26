@@ -3,7 +3,7 @@
 <html>
 <head>
     <title>${sessionScope.tournament.name} - My Tournament</title>
-    <link rel="stylesheet" href="../CSS/tournament.css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/tournament.css"/>
 </head>
 <body>
 <jsp:include page="/WEB-INF/header.jsp"/>

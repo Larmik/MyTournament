@@ -34,7 +34,7 @@ public class LoginServlet extends HttpServlet {
                     onlineCookie.setPath("/");
                     onlineCookie.setMaxAge(60 * 60 * 24 * 14);
                     response.addCookie(onlineCookie);
-                    response.sendRedirect("/home");
+                    response.sendRedirect(request.getContextPath() + "/home");
             } else {
                 request.setAttribute("error", "Identifiants incorrects !");
                 this.getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);

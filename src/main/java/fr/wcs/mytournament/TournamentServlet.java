@@ -23,7 +23,7 @@ public class TournamentServlet extends HttpServlet {
                 Class driverClass = Class.forName("com.mysql.jdbc.Driver");
                 Driver driver = (Driver) driverClass.newInstance();
                 DriverManager.registerDriver(driver);
-                sConnection = DriverManager.getConnection("jdbc:mysql://localhost:3306/myTournament", "root", "jecode4wcs");
+                sConnection = DriverManager.getConnection("jdbc:mysql://localhost:3306/myTournament", "wcs", "RrPp4zq?XtT=Ferh");
 
             } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | SQLException e) {
                 e.printStackTrace();

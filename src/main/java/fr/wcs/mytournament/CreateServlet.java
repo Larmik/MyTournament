@@ -53,7 +53,7 @@ public class CreateServlet extends HttpServlet {
                     e.printStackTrace();
                 }
                 AddPlayerServlet.playerSelected.clear();
-                response.sendRedirect("/show");
+                response.sendRedirect(request.getContextPath() + "/show");
             }
         } else {
             request.setAttribute("emptyError", "Veuillez choisir au moins deux joueurs");
@@ -79,7 +79,7 @@ public class CreateServlet extends HttpServlet {
             AddPlayerServlet.sqlRequestPlayer(playerNames, playerSelected, request);
             this.getServletContext().getRequestDispatcher("/WEB-INF/create_tournament.jsp").forward(request, response);
         } else {
-            response.sendRedirect("/");
+            response.sendRedirect(request.getContextPath() + "/");
         }
     }
 

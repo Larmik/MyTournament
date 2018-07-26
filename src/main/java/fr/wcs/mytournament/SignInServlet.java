@@ -35,7 +35,7 @@ public class SignInServlet extends HttpServlet {
                 cookieConfig(onlineCookie, response);
                 request.getSession().setAttribute("online", true);
                 request.getSession().setAttribute("pseudo", pseudo);
-                response.sendRedirect("/home");
+                response.sendRedirect(request.getContextPath() + "/home");
             }
         } else {
             request.setAttribute("noMatchError", "Mots de passes différents.");
